@@ -1,0 +1,7 @@
+# build output
+dist/
+.output/
+*.mdx
+
+# dependencies
+node_modules/
