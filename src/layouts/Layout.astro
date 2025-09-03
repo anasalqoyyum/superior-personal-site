@@ -1,0 +1,87 @@
+
+---
+import type { CollectionEntry } from 'astro:content'
+import ActiveLink from '../components/ActiveLink.astro'
+import BaseHead from '../components/BaseHead.astro'
+import { SOCIAL_LINK } from '../consts'
+
+type Props = CollectionEntry<'blog'>['data']
+
+const { title, description } = Astro.props
+
+const { pathname } = Astro.url
+const isHome = pathname === '/'
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body
+    class={`preload-transitions bg-white text-slate-800 dark:text-slate-200 dark:bg-neutral-900 min-w-[20rem]
+	antialiased${isHome ? ' flex items-center' : ''}`}
+  >
+    <div class={`w-full m-auto p-6 flex-grow flex flex-col max-w-3xl lg:max-w-4xl ${isHome ? 'h-full max-h-[44rem]' : 'min-h-full'}`}>
+      <header>
+        <a href="#skip" class="sr-only focus:not-sr-only"> Skip to content</a>
+        <nav class="text-sm sm:text-base">
+          <ul class="flex w-full space-x-4">
+            <li class="nav-link">
+              <ActiveLink href="/blog">Blog</ActiveLink>
+            </li>
+            <li class="nav-link">
+              <a
+                href="https://kakekane.com"
+                target="_blank"
+                rel="noreferrer noopener"
+                class={`inline-block text-slate-500 dark:text-slate-300 transition-colors duration-200 border-b dark:border-slate-700 hover:border-current`}
+              >
+                Works
+              </a>
+            </li>
+            <li class="nav-link">
+              <ActiveLink href="/about">About</ActiveLink>
+            </li>
+            {
+              !isHome && (
+                <li class="nav-link">
+                  <ActiveLink href="/">Home</ActiveLink>
+                </li>
+              )
+            }
+          </ul>
+        </nav>
+      </header>
+      <main id="skip" class="flex flex-col flex-grow py-12">
+        <slot />
+      </main>
+      <footer class="flex mb-4 text-sm sm:text-base flex-col justify-between sm:flex-row sm:items-end">
+        <ul class="flex flex-wrap flex-shrink-0 max-w-full mr-6">
+          {
+            SOCIAL_LINK.map(([label, href]) => (
+              <li class="mr-4 mt-2">
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="link-emoji relative inline-block text-slate-500 dark:text-slate-300 transition-colors duration-200 border-b dark:border-slate-700 hover:border-current"
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <section class="max-w-full overflow-hidden p-1 -m-1 mt-4 mr-auto sm:mr-0 sm:mt-0"></section>
+      </footer>
+    </div>
+    <script is:inline>
+      setTimeout(() => {
+        if (typeof window !== 'undefined' && document.body.classList.contains('preload-transitions')) {
+          document.body.classList.remove('preload-transitions')
+        }
+      }, 0)
+    </script>
+  </body>
+</html>
