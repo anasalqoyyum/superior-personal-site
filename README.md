@@ -1,3 +1,3 @@
-# Superior-Re-Personal-Site
+# Superior-Personal-Site
 
-Migrating (Remake) my old Personal Website and build it with Astro 🚀
+Migrating (Remake of Remake) my old Personal Website and build it with Astro 🚀

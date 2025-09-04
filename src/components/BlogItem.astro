@@ -1,8 +1,9 @@
 ---
-import type { PostFrontMatter } from '../pages/blog.astro'
+import type { CollectionEntry } from 'astro:content'
 
-const { title, summary, url, publishedAt } = Astro.props as PostFrontMatter & { url: string }
-// Convert publishedAt (string like "2025-09-04") into a Date
+type Props = CollectionEntry<'blog'>['data'] & { url: string }
+
+const { title, summary, url, publishedAt } = Astro.props
 const publishDate = new Date(publishedAt).toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
@@ -10,13 +11,13 @@ const publishDate = new Date(publishedAt).toLocaleDateString('en-US', {
 })
 ---
 
-<article class="group border-b dark:border-gray-700 pb-6 transition-all">
+<article class="group border-b pb-6 transition-all dark:border-gray-700">
   <a href={url} class="block">
     <div class="flex flex-col space-y-2">
-      <h2 class="text-xl font-semibold group-hover:text-sky-500 transition-colors">
+      <h2 class="text-xl font-semibold text-slate-900 transition-colors hover:text-sky-500 dark:text-slate-100">
         {title}
       </h2>
-      <p class="text-gray-600 dark:text-gray-400 text-sm">
+      <p class="text-sm text-gray-600 dark:text-gray-400">
         {publishDate}
       </p>
       <p class="text-gray-700 dark:text-gray-300">

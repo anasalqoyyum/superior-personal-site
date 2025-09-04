@@ -1,13 +1,10 @@
-
 ---
-import type { CollectionEntry } from 'astro:content'
 import ActiveLink from '../components/ActiveLink.astro'
+import type { Props as HeadProps } from '../components/BaseHead.astro'
 import BaseHead from '../components/BaseHead.astro'
 import { SOCIAL_LINK } from '../consts'
 
-type Props = CollectionEntry<'blog'>['data']
-
-const { title, description } = Astro.props
+const { title, description } = Astro.props as HeadProps
 
 const { pathname } = Astro.url
 const isHome = pathname === '/'
@@ -53,19 +50,19 @@ const isHome = pathname === '/'
           </ul>
         </nav>
       </header>
-      <main id="skip" class="flex flex-col flex-grow py-12">
+      <main id="skip" class="flex flex-grow flex-col py-12">
         <slot />
       </main>
-      <footer class="flex mb-4 text-sm sm:text-base flex-col justify-between sm:flex-row sm:items-end">
-        <ul class="flex flex-wrap flex-shrink-0 max-w-full mr-6">
+      <footer class="mb-4 flex flex-col justify-between text-sm sm:flex-row sm:items-end sm:text-base">
+        <ul class="mr-6 flex max-w-full flex-shrink-0 flex-wrap">
           {
             SOCIAL_LINK.map(([label, href]) => (
-              <li class="mr-4 mt-2">
+              <li class="mt-2 mr-4">
                 <a
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  class="link-emoji relative inline-block text-slate-500 dark:text-slate-300 transition-colors duration-200 border-b dark:border-slate-700 hover:border-current"
+                  class="link-emoji relative inline-block border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
                 >
                   {label}
                 </a>
@@ -73,7 +70,7 @@ const isHome = pathname === '/'
             ))
           }
         </ul>
-        <section class="max-w-full overflow-hidden p-1 -m-1 mt-4 mr-auto sm:mr-0 sm:mt-0"></section>
+        <section class="-m-1 mt-4 mr-auto max-w-full overflow-hidden p-1 sm:mt-0 sm:mr-0"></section>
       </footer>
     </div>
     <script is:inline>
