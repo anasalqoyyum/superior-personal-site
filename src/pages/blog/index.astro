@@ -5,7 +5,7 @@ import { SITE_TITLE } from '../../consts'
 import Layout from '../../layouts/Layout.astro'
 
 const posts = await getCollection('blog')
-const nonHiddenPosts = posts.filter(post => !post.data.hidden && !post.id.includes('/en'))
+const nonHiddenPosts = posts.filter(post => !post.data.hidden).filter(post => post.id.includes('en/'))
 nonHiddenPosts.sort((a, b) => Date.parse(b.data.publishedAt) - Date.parse(a.data.publishedAt))
 ---
 
