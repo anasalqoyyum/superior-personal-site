@@ -6,7 +6,7 @@ export const PostFrontMatterSchema = z.object({
   summary: z.string(),
   publishedAt: z.string(),
   thumbnail: z.string(),
-  thumbnailAlt: z.string(),
+  thumbnailAlt: z.string().optional(),
   thumbnailSource: z.string(),
   lang: z.string().optional(),
   langInfo: z.string().optional(),
