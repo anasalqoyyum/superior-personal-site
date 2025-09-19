@@ -19,7 +19,7 @@ const isHome = pathname === '/'
     class={`preload-transitions bg-white text-slate-800 dark:text-slate-200 dark:bg-neutral-900 min-w-[20rem]
 	antialiased${isHome ? ' flex items-center' : ''}`}
   >
-    <div class={`w-full m-auto p-6 flex-grow flex flex-col max-w-3xl lg:max-w-4xl ${isHome ? 'h-full max-h-[44rem]' : 'min-h-full'}`}>
+    <div class={`w-full m-auto p-6 flex-grow flex flex-col max-w-3xl lg:max-w-5xl ${isHome ? 'h-full max-h-[44rem]' : 'min-h-full'}`}>
       <header>
         <a href="#skip" class="sr-only focus:not-sr-only"> Skip to content</a>
         <nav class="text-sm sm:text-base">
@@ -37,6 +37,10 @@ const isHome = pathname === '/'
                 Works
               </a>
             </li>
+            <!-- disabled for now -->
+            <!-- <li class="nav-link"> -->
+            <!--   <ActiveLink href="/compendium">Compendium</ActiveLink> -->
+            <!-- </li> -->
             <li class="nav-link">
               <ActiveLink href="/about">About</ActiveLink>
             </li>

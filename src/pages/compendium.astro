@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { entries } from '../content/compendium'
+import CompendiumCard from '../components/CompendiumCard.astro'
+
+const title = 'Compendium'
+const description = 'Everything I’ve watched, read, and played'
+const active = entries.filter(e => e.active).sort((a, b) => b.date.localeCompare(a.date))
+const nonActive = entries.filter(e => !e.active)
+const years = Array.from(new Set(nonActive.map(e => e.year))).sort((a, b) => b - a)
+const byYear = years.map(y => ({ year: y, items: nonActive.filter(e => e.year === y).sort((a, b) => b.date.localeCompare(a.date)) }))
+---
+
+<Layout title={`${title} - Anas Alqoyyum`} description={description}>
+  <section class="mx-auto w-full">
+    <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl">Compendium</h1>
+    <p class="mt-2 text-center text-slate-500 dark:text-slate-300">{description}</p>
+    <p class="mt-2 text-center">
+      <a
+        href="/compendium/list"
+        class="text-sm text-slate-500 underline underline-offset-4 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-100"
+        >View as list</a
+      >
+    </p>
+
+    <nav class="mt-6 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
+      <a
+        href="/compendium/movie"
+        class="border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
+        >🍿 Movies</a
+      >
+      <a
+        href="/compendium/tv"
+        class="border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
+        >📺 TV</a
+      >
+      <a
+        href="/compendium/game"
+        class="border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
+        >🎮 Games</a
+      >
+      <a
+        href="/compendium/book"
+        class="border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
+        >📚 Books</a
+      >
+    </nav>
+
+    <hr class="my-6 border-slate-200 dark:border-slate-800" />
+
+    <div class="grid grid-cols-12 gap-4">
+      <aside class="col-span-12 lg:col-span-2">
+        <div class="flex h-full items-start justify-center lg:sticky lg:top-24 lg:justify-start">
+          <div
+            class="w-full rounded-md bg-slate-100 px-4 py-4 text-center font-semibold text-slate-600 lg:text-left dark:bg-neutral-800 dark:text-slate-200"
+          >
+            <ul class="space-y-2">
+              {
+                years.map(y => (
+                  <li>
+                    <a href={`#y-${y}`} class="hover:underline">
+                      {y}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </div>
+      </aside>
+
+      <section class="col-span-12 lg:col-span-10">
+        <CompendiumCard active={active} byYear={byYear} />
+      </section>
+    </div>
+  </section>
+</Layout>

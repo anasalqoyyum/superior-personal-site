@@ -9,7 +9,7 @@ const title = 'Anas Alqoyyum - Software Engineer'
 
 <Layout title={title}>
   <article class="my-auto pb-8">
-    <a class="inline-block text-slate-800">
+    <span class="inline-block text-slate-800">
       <h1 class="title relative mb-3 inline-flex flex-col-reverse sm:flex-row">
         <div class="relative inline-block text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
           <span class="title-gradient">Anas Alqoyyum</span>
@@ -17,14 +17,14 @@ const title = 'Anas Alqoyyum - Software Engineer'
         </div>
         <div class="relative mb-2 flex h-16 w-16 sm:-mb-8 sm:ml-24 sm:h-24 sm:w-24">
           <div class="avatar first:h-width absolute inset-0 flex h-full w-full overflow-hidden rounded-full first:w-full">
-            <Image src={avatar} width={128} height={128} loading="lazy" alt="Anas Alqoyyum" />
+            <Image src={avatar} width={128} height={128} loading="eager" alt="Anas Alqoyyum" />
           </div>
           <div class="photo first:h-width flex h-full w-full overflow-hidden rounded-full first:w-full" aria-hidden="true">
-            <Image src={photo} width={128} height={128} loading="lazy" alt="Tairitsu" />
+            <Image src={photo} width={128} height={128} loading="eager" alt="Tairitsu" />
           </div>
         </div>
       </h1>
-    </a>
+    </span>
     <p class="text-md block w-[80%] font-medium text-slate-400 sm:text-xl sm:leading-relaxed md:w-[85%]">
       <span class="transition-color duration-300 hover:text-slate-600 dark:hover:text-slate-200"> Software Engineer</span>
     </p>

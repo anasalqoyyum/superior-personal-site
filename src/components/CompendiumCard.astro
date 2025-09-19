@@ -1,0 +1,74 @@
+---
+import type { CompendiumEntry } from '../content/compendium'
+
+interface Props {
+  active: CompendiumEntry[]
+  byYear: {
+    year: number
+    items: CompendiumEntry[]
+  }[]
+}
+
+const { active, byYear } = Astro.props as Props
+---
+
+{
+  active.length > 0 && (
+    <section id="active" class="mb-10">
+      <h2 class="mb-4 text-xl font-semibold">Actively Playing</h2>
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        {active.map(it => (
+          <figure class="relative transform-gpu overflow-hidden rounded-md bg-slate-100 object-cover shadow-sm transition-transform duration-300 ease-out hover:scale-105 dark:bg-neutral-800">
+            <div class="relative">
+              <img
+                src={it.img || '/og-image.png'}
+                alt={it.title}
+                class="comp-img aspect-[2/3] w-full transform-gpu object-cover transition-transform duration-300 ease-out"
+                loading="lazy"
+              />
+              <span
+                class="comp-light pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"
+                style={{
+                  background: 'radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.22), transparent 45%)',
+                  mixBlendMode: 'screen'
+                }}
+                aria-hidden="true"
+              />
+            </div>
+          </figure>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+{
+  byYear.map(group => (
+    <section id={`y-${group.year}`} class="mb-10">
+      <h2 class="mb-4 text-xl font-semibold">{group.year}</h2>
+      <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        {group.items.map(it => (
+          <figure class="relative transform-gpu overflow-hidden rounded-md bg-slate-100 object-cover shadow-sm transition-transform duration-300 ease-out hover:scale-105 dark:bg-neutral-800">
+            <div class="relative">
+              <img
+                src={it.img || '/og-image.png'}
+                alt={it.title}
+                class="comp-img aspect-[2/3] w-full transform-gpu object-cover transition-transform duration-300 ease-out"
+                loading="lazy"
+              />
+              <span
+                class="comp-light pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300"
+                style={{
+                  background: 'radial-gradient(500px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,0.22), transparent 45%)',
+                  mixBlendMode: 'screen'
+                }}
+                aria-hidden="true"
+              />
+            </div>
+          </figure>
+        ))}
+      </div>
+    </section>
+  ))
+}
+<script src="../scripts/compendium.ts"></script>
