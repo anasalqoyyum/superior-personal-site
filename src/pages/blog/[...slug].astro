@@ -25,7 +25,7 @@ const publishDate = new Date(publishedAt).toLocaleDateString('en-US', {
 })
 const { text: readingTime } = calcReadingTime(post.body || '')
 const { pathname } = Astro.url
-const githubFileUrl = `https://github.com/anasalqoyyum/superior-personal-site/edit/master/src/content{pathname.replace(/\/$/, '')}.md`
+const githubFileUrl = `https://github.com/anasalqoyyum/superior-personal-site/edit/master/src/content{pathname.replace(//$/, '')}.md`
 
 const buildUrl = () => {
   switch (lang) {
