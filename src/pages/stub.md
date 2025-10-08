@@ -67,7 +67,7 @@ Markdown offers six levels of headings:
 
 [Jump to heading](#headings)
 
-![Alt text for an image](https://example.com/image.jpg 'Optional title')
+![Alt text for an image](https://example.com/image.webp 'Optional title')
 
 ## Blockquotes
 

@@ -2,7 +2,7 @@
 title: Life is too short
 summary: I think many of us take life for granted.
 publishedAt: '2023-01-21'
-thumbnail: '/assets/bochi.jpg'
+thumbnail: '/assets/bochi.webp'
 thumbnailAlt: 'Bochi Depression'
 thumbnailSource: 'Bochi the Rock, a really good slice of life anime about friendship and music'
 lang: EN

@@ -2,7 +2,7 @@
 title: Jenis Keberuntungan dan Mekanismenya
 summary: I was fascinated by Blue Lock chapter 87, where Jinpachi Ego explains the mechanism of luck in the football world
 publishedAt: '2022-12-19'
-thumbnail: '/assets/luck.jpg'
+thumbnail: '/assets/luck.webp'
 thumbnailAlt: 'Not that luck'
 thumbnailSource: 'Black Clover (go watch it, its a great shonen anime)'
 lang: ID
@@ -30,7 +30,7 @@ Kita mungkin akrab dengan kasus pertama, tetapi merasa aneh dengan kasus kedua. 
 
 ---
 
-![Blue Lock chapter 87](/assets/luck_2.png)
+![Blue Lock chapter 87](/assets/luck_2.webp)
 
 ---
 

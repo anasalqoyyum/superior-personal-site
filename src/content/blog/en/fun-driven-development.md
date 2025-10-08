@@ -2,7 +2,7 @@
 title: 'Embracing a Fun-Driven Development Mindset'
 summary: Rediscovering Joy in Code.
 publishedAt: '2025-04-01'
-thumbnail: '/assets/sakiko.jpg'
+thumbnail: '/assets/sakiko.webp'
 thumbnailAlt: 'Togawa Sakiko doing something silly'
 thumbnailSource: 'Go watch MyGO!!!! and Ave Mujica, a really good band anime that leaves a gaping hole in my heart'
 lang: EN

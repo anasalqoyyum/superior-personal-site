@@ -2,7 +2,7 @@
 title: 'Review: Kai no Kiseki'
 summary: I saw Kondo in my dreams last night, he said PEAK IS HERE.
 publishedAt: '2025-02-11'
-thumbnail: '/assets/kai-1.jpg'
+thumbnail: '/assets/kai-1.webp'
 thumbnailAlt: 'Nina Fenly true form'
 thumbnailSource: 'She is so beautiful in this artwork'
 lang: EN
@@ -18,7 +18,7 @@ Right from the start of the game, the story holds no punches in setting the tone
 
 <figure>
     <div classname="flex justify-center">
-        <img src="/assets/kai-3.png" alt="Three available routes and all of them is enjoyable">
+        <img src="/assets/kai-3.webp" alt="Three available routes and all of them is enjoyable">
     </div>
     <figcaption classname="text-slate-500 text-center break-all">Three available routes and all of them is enjoyable</figcaption>
 </figure>
@@ -29,7 +29,7 @@ That OST as well.. man. I really do love the tracks as a whole this time around.
 
 <figure>
     <div classname="flex justify-center">
-        <img src="/assets/kai-2.png" alt="Insane stretch of final chapter OST">
+        <img src="/assets/kai-2.webp" alt="Insane stretch of final chapter OST">
     </div>
     <figcaption classname="text-slate-500 text-center break-all">Insane stretch of final chapter OST</figcaption>
 </figure>
@@ -46,7 +46,7 @@ This game is one of my top 5 favorites, without doubt. (Top 2 even!) And I am ea
 
 <figure>
     <div classname="flex justify-center">
-        <img src="/assets/kai-4.png" alt="This scene made me wonder if they inspired by Gundam Witch from Mercury">
+        <img src="/assets/kai-4.webp" alt="This scene made me wonder if they inspired by Gundam Witch from Mercury">
     </div>
     <figcaption classname="text-slate-500 text-center break-all">This scene made me wonder if they inspired by Gundam Witch from Mercury</figcaption>
 </figure>
