@@ -1,6 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import { entries, categoryEmoji, type CompendiumCategory } from '../../content/compendium'
+import {
+  entries,
+  categoryEmoji,
+  type CompendiumCategory
+} from '../../content/compendium'
 import { toWordCase } from '../../utils'
 import CompendiumCard from '../../components/CompendiumCard.astro'
 
@@ -19,16 +23,29 @@ const title = `Compendium – ${toWordCase(category)}`
 const description = `Entries in ${category}`
 
 const filtered = entries.filter(e => e.categories === category)
-const active = filtered.filter(e => e.active).sort((a, b) => b.date.localeCompare(a.date))
+const active = filtered
+  .filter(e => e.active)
+  .sort((a, b) => b.date.localeCompare(a.date))
 const nonActive = filtered.filter(e => !e.active)
-const years = Array.from(new Set(nonActive.map(e => e.year))).sort((a, b) => b - a)
-const byYear = years.map(y => ({ year: y, items: nonActive.filter(e => e.year === y).sort((a, b) => b.date.localeCompare(a.date)) }))
+const years = Array.from(new Set(nonActive.map(e => e.year))).sort(
+  (a, b) => b - a
+)
+const byYear = years.map(y => ({
+  year: y,
+  items: nonActive
+    .filter(e => e.year === y)
+    .sort((a, b) => b.date.localeCompare(a.date))
+}))
 ---
 
 <Layout title={`${title} - Anas Alqoyyum`} description={description}>
   <section class="mx-auto w-full">
-    <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl">Compendium</h1>
-    <p class="mt-2 text-center text-slate-500 dark:text-slate-300">Everything I’ve watched, read, and played</p>
+    <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl">
+      Compendium
+    </h1>
+    <p class="mt-2 text-center text-slate-500 dark:text-slate-300">
+      Everything I’ve watched, read, and played
+    </p>
     <p class="mt-2 text-center text-sm text-slate-500 dark:text-slate-300">
       <span aria-hidden="true">{categoryEmoji[category]}</span>
       <span>

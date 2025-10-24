@@ -12,7 +12,11 @@ export type Props = {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-let { title, description = SITE_DESCRIPTION, image = FallbackImage } = Astro.props as Props
+let {
+  title,
+  description = SITE_DESCRIPTION,
+  image = FallbackImage
+} = Astro.props as Props
 ---
 
 <meta charset="utf-8" />
@@ -23,7 +27,12 @@ let { title, description = SITE_DESCRIPTION, image = FallbackImage } = Astro.pro
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="manifest" href="/site.webmanifest" />
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href={new URL('rss.xml', Astro.site)} />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={SITE_TITLE}
+  href={new URL('rss.xml', Astro.site)}
+/>
 <meta name="generator" content={Astro.generator} />
 
 <link rel="canonical" href={canonicalURL} />

@@ -20,17 +20,94 @@ export const categoryEmoji: Record<CompendiumCategory, string> = {
 
 export const entries: CompendiumEntry[] = [
   // 2025
-  { title: 'Black Panther', categories: 'movie', date: '2025-09-16', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Thor: Love and Thunder', categories: 'movie', date: '2025-09-15', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Thor: Ragnarok', categories: 'movie', date: '2025-09-14', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Thor: The Dark World', categories: 'movie', date: '2025-09-12', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Thor', categories: 'movie', date: '2025-09-11', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Getting LOST', categories: 'movie', date: '2025-09-10', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Black Widow', categories: 'movie', date: '2025-09-09', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Grey’s Anatomy', categories: 'tv', date: '2025-09-08', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Law & Order: Special Victims Unit', categories: 'tv', date: '2025-08-14', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'Clarkson’s Farm', categories: 'tv', date: '2025-07-16', year: 2025, href: '#', img: '/og-image.png' },
-  { title: 'The Last of Us', categories: 'game', date: '2025-05-26', year: 2025, href: '#', img: '/og-image.png' },
+  {
+    title: 'Black Panther',
+    categories: 'movie',
+    date: '2025-09-16',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Thor: Love and Thunder',
+    categories: 'movie',
+    date: '2025-09-15',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Thor: Ragnarok',
+    categories: 'movie',
+    date: '2025-09-14',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Thor: The Dark World',
+    categories: 'movie',
+    date: '2025-09-12',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Thor',
+    categories: 'movie',
+    date: '2025-09-11',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Getting LOST',
+    categories: 'movie',
+    date: '2025-09-10',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Black Widow',
+    categories: 'movie',
+    date: '2025-09-09',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Grey’s Anatomy',
+    categories: 'tv',
+    date: '2025-09-08',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Law & Order: Special Victims Unit',
+    categories: 'tv',
+    date: '2025-08-14',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'Clarkson’s Farm',
+    categories: 'tv',
+    date: '2025-07-16',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
+  {
+    title: 'The Last of Us',
+    categories: 'game',
+    date: '2025-05-26',
+    year: 2025,
+    href: '#',
+    img: '/og-image.png'
+  },
 
   // 2024
   {
@@ -57,11 +134,46 @@ export const entries: CompendiumEntry[] = [
     href: '#',
     img: '/assets/software_testing_day.png'
   },
-  { title: 'Kaiju No. 8', categories: 'tv', date: '2024-06-01', year: 2024, href: '#', img: '/assets/kai_title.png' },
-  { title: 'Kaiju No. 8 Episode 1', categories: 'tv', date: '2024-06-08', year: 2024, href: '#', img: '/assets/kai-1.jpg' },
-  { title: 'Kaiju No. 8 Episode 2', categories: 'tv', date: '2024-06-15', year: 2024, href: '#', img: '/assets/kai-2.png' },
-  { title: 'Kaiju No. 8 Episode 3', categories: 'tv', date: '2024-06-22', year: 2024, href: '#', img: '/assets/kai-3.png' },
-  { title: 'Kaiju No. 8 Episode 4', categories: 'tv', date: '2024-06-29', year: 2024, href: '#', img: '/assets/kai-4.png' },
+  {
+    title: 'Kaiju No. 8',
+    categories: 'tv',
+    date: '2024-06-01',
+    year: 2024,
+    href: '#',
+    img: '/assets/kai_title.png'
+  },
+  {
+    title: 'Kaiju No. 8 Episode 1',
+    categories: 'tv',
+    date: '2024-06-08',
+    year: 2024,
+    href: '#',
+    img: '/assets/kai-1.jpg'
+  },
+  {
+    title: 'Kaiju No. 8 Episode 2',
+    categories: 'tv',
+    date: '2024-06-15',
+    year: 2024,
+    href: '#',
+    img: '/assets/kai-2.png'
+  },
+  {
+    title: 'Kaiju No. 8 Episode 3',
+    categories: 'tv',
+    date: '2024-06-22',
+    year: 2024,
+    href: '#',
+    img: '/assets/kai-3.png'
+  },
+  {
+    title: 'Kaiju No. 8 Episode 4',
+    categories: 'tv',
+    date: '2024-06-29',
+    year: 2024,
+    href: '#',
+    img: '/assets/kai-4.png'
+  },
   {
     title: 'Doing Things',
     categories: 'book',
@@ -70,7 +182,14 @@ export const entries: CompendiumEntry[] = [
     href: '/blog/en/doing-things',
     img: '/assets/doing_thing.webp'
   },
-  { title: 'Types of Luck', categories: 'book', date: '2024-03-26', year: 2024, href: '/blog/en/types-of-luck', img: '/assets/luck.jpg' },
+  {
+    title: 'Types of Luck',
+    categories: 'book',
+    date: '2024-03-26',
+    year: 2024,
+    href: '/blog/en/types-of-luck',
+    img: '/assets/luck.jpg'
+  },
   {
     title: 'Types of Luck (ID)',
     categories: 'book',
@@ -79,7 +198,14 @@ export const entries: CompendiumEntry[] = [
     href: '/blog/id/types-of-luck',
     img: '/assets/luck_2.png'
   },
-  { title: 'Rainbow: Chunithm', categories: 'game', date: '2024-02-17', year: 2024, href: '#', img: '/assets/rainbow_chunithm.png' },
+  {
+    title: 'Rainbow: Chunithm',
+    categories: 'game',
+    date: '2024-02-17',
+    year: 2024,
+    href: '#',
+    img: '/assets/rainbow_chunithm.png'
+  },
   {
     title: 'Maimai',
     categories: 'game',

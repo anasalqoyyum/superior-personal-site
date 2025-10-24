@@ -3,57 +3,93 @@ import Layout from '../../layouts/Layout.astro'
 import { entries as allEntries, categoryEmoji } from '../../content/compendium'
 
 const title = 'Compendium'
-const description = "Everything I’ve watched, read, and played"
+const description = 'Everything I’ve watched, read, and played'
 
-const active = allEntries.filter(e => e.active).sort((a,b)=>b.date.localeCompare(a.date))
+const active = allEntries
+  .filter(e => e.active)
+  .sort((a, b) => b.date.localeCompare(a.date))
 const nonActive = allEntries.filter(e => !e.active)
-const years = Array.from(new Set(nonActive.map((e) => e.year))).sort((a,b)=>b-a)
-const grouped = years.map((y) => ({
+const years = Array.from(new Set(nonActive.map(e => e.year))).sort(
+  (a, b) => b - a
+)
+const grouped = years.map(y => ({
   year: y,
-  items: nonActive.filter((e) => e.year === y).sort((a,b)=> (a.date < b.date ? 1 : -1))
+  items: nonActive
+    .filter(e => e.year === y)
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
 }))
 ---
 
 <Layout title={`${title} - List - Anas Alqoyyum`} description={description}>
   <section class="mx-auto w-full">
-    <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl text-center">{title}</h1>
-    <p class="mt-2 text-center text-slate-500 dark:text-slate-300">{description}</p>
+    <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl">
+      {title}
+    </h1>
+    <p class="mt-2 text-center text-slate-500 dark:text-slate-300">
+      {description}
+    </p>
     <p class="mt-2 text-center">
-      <a href="/compendium" class="text-sm text-slate-500 dark:text-slate-300 underline underline-offset-4 hover:text-slate-700 dark:hover:text-slate-100">View as grid</a>
+      <a
+        href="/compendium"
+        class="text-sm text-slate-500 underline underline-offset-4 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-100"
+        >View as grid</a
+      >
     </p>
 
-    {active.length > 0 && (
-      <div class="mt-8">
-        <h2 class="text-2xl font-bold">Actively Playing</h2>
-        <ul class="mt-4 divide-y divide-dashed divide-slate-200 dark:divide-slate-700">
-          {active.map((e) => (
-            <li class="flex items-center justify-between py-3">
-              <div class="min-w-0 truncate">
-                <span class="mr-2" aria-hidden="true">{categoryEmoji[e.categories]}</span>
-                <a href={e.href} class="underline underline-offset-4 hover:text-slate-700 dark:hover:text-slate-100">{e.title}</a>
-              </div>
-              <time class="text-sm text-slate-500 dark:text-slate-400 font-mono">{e.date}</time>
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
+    {
+      active.length > 0 && (
+        <div class="mt-8">
+          <h2 class="text-2xl font-bold">Actively Playing</h2>
+          <ul class="mt-4 divide-y divide-dashed divide-slate-200 dark:divide-slate-700">
+            {active.map(e => (
+              <li class="flex items-center justify-between py-3">
+                <div class="min-w-0 truncate">
+                  <span class="mr-2" aria-hidden="true">
+                    {categoryEmoji[e.categories]}
+                  </span>
+                  <a
+                    href={e.href}
+                    class="underline underline-offset-4 hover:text-slate-700 dark:hover:text-slate-100"
+                  >
+                    {e.title}
+                  </a>
+                </div>
+                <time class="font-mono text-sm text-slate-500 dark:text-slate-400">
+                  {e.date}
+                </time>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )
+    }
 
-    {grouped.map((group) => (
-      <div class="mt-8">
-        <h2 class="text-2xl font-bold">{group.year}</h2>
-        <ul class="mt-4 divide-y divide-dashed divide-slate-200 dark:divide-slate-700">
-          {group.items.map((e) => (
-            <li class="flex items-center justify-between py-3">
-              <div class="min-w-0 truncate">
-                <span class="mr-2" aria-hidden="true">{categoryEmoji[e.categories]}</span>
-                <a href={e.href} class="underline underline-offset-4 hover:text-slate-700 dark:hover:text-slate-100">{e.title}</a>
-              </div>
-              <time class="text-sm text-slate-500 dark:text-slate-400 font-mono">{e.date}</time>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))}
+    {
+      grouped.map(group => (
+        <div class="mt-8">
+          <h2 class="text-2xl font-bold">{group.year}</h2>
+          <ul class="mt-4 divide-y divide-dashed divide-slate-200 dark:divide-slate-700">
+            {group.items.map(e => (
+              <li class="flex items-center justify-between py-3">
+                <div class="min-w-0 truncate">
+                  <span class="mr-2" aria-hidden="true">
+                    {categoryEmoji[e.categories]}
+                  </span>
+                  <a
+                    href={e.href}
+                    class="underline underline-offset-4 hover:text-slate-700 dark:hover:text-slate-100"
+                  >
+                    {e.title}
+                  </a>
+                </div>
+                <time class="font-mono text-sm text-slate-500 dark:text-slate-400">
+                  {e.date}
+                </time>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
   </section>
 </Layout>

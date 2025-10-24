@@ -19,7 +19,9 @@ const isHome = pathname === '/'
     class={`preload-transitions bg-white text-slate-800 dark:text-slate-200 dark:bg-neutral-900 min-w-[20rem]
 	antialiased${isHome ? ' flex items-center' : ''}`}
   >
-    <div class={`w-full m-auto p-6 flex-grow flex flex-col max-w-3xl lg:max-w-5xl ${isHome ? 'h-full max-h-[44rem]' : 'min-h-full'}`}>
+    <div
+      class={`w-full m-auto p-6 flex-grow flex flex-col max-w-3xl lg:max-w-5xl ${isHome ? 'h-full max-h-[44rem]' : 'min-h-full'}`}
+    >
       <header>
         <a href="#skip" class="sr-only focus:not-sr-only"> Skip to content</a>
         <nav class="text-sm sm:text-base">
@@ -57,7 +59,9 @@ const isHome = pathname === '/'
       <main id="skip" class="flex flex-grow flex-col py-12">
         <slot />
       </main>
-      <footer class="mb-4 flex flex-col justify-between text-sm sm:flex-row sm:items-end sm:text-base">
+      <footer
+        class="mb-4 flex flex-col justify-between text-sm sm:flex-row sm:items-end sm:text-base"
+      >
         <ul class="mr-6 flex max-w-full flex-shrink-0 flex-wrap">
           {
             SOCIAL_LINK.map(([label, href]) => (
@@ -74,12 +78,18 @@ const isHome = pathname === '/'
             ))
           }
         </ul>
-        <section class="-m-1 mt-4 mr-auto max-w-full overflow-hidden p-1 sm:mt-0 sm:mr-0"></section>
+        <section
+          class="-m-1 mt-4 mr-auto max-w-full overflow-hidden p-1 sm:mt-0 sm:mr-0"
+        >
+        </section>
       </footer>
     </div>
     <script is:inline>
       setTimeout(() => {
-        if (typeof window !== 'undefined' && document.body.classList.contains('preload-transitions')) {
+        if (
+          typeof window !== 'undefined' &&
+          document.body.classList.contains('preload-transitions')
+        ) {
           document.body.classList.remove('preload-transitions')
         }
       }, 0)

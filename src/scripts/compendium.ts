@@ -1,9 +1,12 @@
-const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const prefersReduced = window.matchMedia(
+  '(prefers-reduced-motion: reduce)'
+).matches
 const imgs = Array.from(document.querySelectorAll('.comp-img'))
 for (const img of imgs) {
   const light = img.nextElementSibling
   const card = img.closest('figure')
-  if (!(light instanceof HTMLElement) || !(card instanceof HTMLElement)) continue
+  if (!(light instanceof HTMLElement) || !(card instanceof HTMLElement))
+    continue
 
   const reset = () => {
     light.style.opacity = '0'

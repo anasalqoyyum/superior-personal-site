@@ -5,16 +5,29 @@ import Layout from '../layouts/Layout.astro'
 
 const title = 'Compendium'
 const description = 'Everything I’ve watched, read, and played'
-const active = entries.filter(e => e.active).sort((a, b) => b.date.localeCompare(a.date))
+const active = entries
+  .filter(e => e.active)
+  .sort((a, b) => b.date.localeCompare(a.date))
 const nonActive = entries.filter(e => !e.active)
-const years = Array.from(new Set(nonActive.map(e => e.year))).sort((a, b) => b - a)
-const byYear = years.map(y => ({ year: y, items: nonActive.filter(e => e.year === y).sort((a, b) => b.date.localeCompare(a.date)) }))
+const years = Array.from(new Set(nonActive.map(e => e.year))).sort(
+  (a, b) => b - a
+)
+const byYear = years.map(y => ({
+  year: y,
+  items: nonActive
+    .filter(e => e.year === y)
+    .sort((a, b) => b.date.localeCompare(a.date))
+}))
 ---
 
 <Layout title={`${title} - Anas Alqoyyum`} description={description}>
   <section class="mx-auto w-full">
-    <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl">Compendium</h1>
-    <p class="mt-2 text-center text-slate-500 dark:text-slate-300">{description}</p>
+    <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl">
+      Compendium
+    </h1>
+    <p class="mt-2 text-center text-slate-500 dark:text-slate-300">
+      {description}
+    </p>
     <p class="mt-2 text-center">
       <a
         href="/compendium/list"
@@ -50,7 +63,9 @@ const byYear = years.map(y => ({ year: y, items: nonActive.filter(e => e.year ==
 
     <div class="grid grid-cols-12 gap-4">
       <aside class="col-span-12 lg:col-span-2">
-        <div class="flex h-full items-start justify-center lg:sticky lg:top-24 lg:justify-start">
+        <div
+          class="flex h-full items-start justify-center lg:sticky lg:top-24 lg:justify-start"
+        >
           <div
             class="w-full rounded-md bg-slate-100 px-4 py-4 text-center font-semibold text-slate-600 lg:text-left dark:bg-neutral-800 dark:text-slate-200"
           >

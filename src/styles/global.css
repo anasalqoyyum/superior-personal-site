@@ -4,9 +4,11 @@
 /* Theme customizations */
 @theme {
   --font-sans:
-    'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-    'Noto Color Emoji';
-  --font-mono: 'Google Sans Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono:
+    'Google Sans Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
 }
 
 :root {
@@ -140,7 +142,14 @@
 }
 
 .title-gradient {
-  background-image: linear-gradient(to right, #2dd2dd 0%, #9a47f3 25%, #fcb26d 50%, #ff61e6 75%, #2dd2dd 100%);
+  background-image: linear-gradient(
+    to right,
+    #2dd2dd 0%,
+    #9a47f3 25%,
+    #fcb26d 50%,
+    #ff61e6 75%,
+    #2dd2dd 100%
+  );
   background-size: 200% auto;
   background-clip: text;
   text-emphasis-color: transparent;
