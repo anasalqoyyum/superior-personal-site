@@ -58,6 +58,10 @@
   content: attr(data-text) / '';
 }
 
+.footnotes h2 {
+  display: none;
+}
+
 @media speech {
   .nav-link::after {
     display: none;
