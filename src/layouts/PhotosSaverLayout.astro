@@ -1,0 +1,110 @@
+---
+import type { Props as HeadProps } from '../components/BaseHead.astro'
+import BaseHead from '../components/BaseHead.astro'
+import { SOCIAL_LINK } from '../consts'
+
+const { title, description } = Astro.props as HeadProps
+
+const navLinks = [
+  ['Overview', '/photos-saver'],
+  ['Privacy Policy', '/photos-saver/privacy-policy'],
+  ['Terms of Service', '/photos-saver/terms-of-service']
+]
+---
+
+<html lang="en">
+  <head>
+    <BaseHead title={title} description={description} />
+  </head>
+
+  <body
+    class="min-h-screen bg-stone-50 text-stone-900 antialiased dark:bg-zinc-950 dark:text-zinc-100"
+  >
+    <div class="mx-auto min-h-screen max-w-6xl px-6 py-6 md:px-8">
+      <header class="border-b border-stone-200 pb-4 dark:border-zinc-800">
+        <div
+          class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+        >
+          <div class="space-y-1">
+            <a
+              href="/photos-saver"
+              class="text-lg font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+            >
+              Photos Saver
+            </a>
+            <p
+              class="max-w-xl text-sm leading-6 text-stone-600 dark:text-zinc-400"
+            >
+              A direct way to save images from the web to Google Photos.
+            </p>
+          </div>
+
+          <nav aria-label="Photos Saver navigation">
+            <ul
+              class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-stone-600 dark:text-zinc-400"
+            >
+              {
+                navLinks.map(([label, href]) => {
+                  const isActive = Astro.url.pathname === href
+
+                  return (
+                    <Fragment key={href}>
+                      <li>
+                        <a
+                          href={href}
+                          aria-current={isActive ? 'page' : undefined}
+                          class:list={[
+                            'border-b border-transparent pb-1 transition-colors duration-150 hover:border-stone-400 hover:text-stone-950 dark:hover:border-zinc-500 dark:hover:text-zinc-100',
+                            isActive &&
+                              'border-stone-900 text-stone-950 dark:border-zinc-100 dark:text-zinc-100'
+                          ]}
+                        >
+                          {label}
+                        </a>
+                      </li>
+                    </Fragment>
+                  )
+                })
+              }
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <main class="py-10 md:py-12">
+        <slot />
+      </main>
+
+      <footer
+        class="border-t border-stone-200 pt-5 text-sm text-stone-600 dark:border-zinc-800 dark:text-zinc-400"
+      >
+        <div
+          class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+        >
+          <p>
+            Photos Saver is operated by Anas Alqoyyum and uses Google APIs to
+            upload media you choose.
+          </p>
+          <ul class="flex flex-wrap gap-x-4 gap-y-2">
+            {
+              SOCIAL_LINK.map(([label, href]) => (
+                <Fragment key={href}>
+                  <li>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      class="border-b border-transparent pb-0.5 transition-colors duration-150 hover:border-stone-400 hover:text-stone-950 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+                    >
+                      {label}
+                    </a>
+                  </li>
+                </Fragment>
+              ))
+            }
+          </ul>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

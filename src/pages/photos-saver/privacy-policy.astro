@@ -1,0 +1,163 @@
+---
+import Layout from '../../layouts/PhotosSaverLayout.astro'
+
+const title = 'Privacy Policy - Photos Saver'
+const description =
+  'Privacy Policy for Photos Saver, a Google Photos companion app by Anas Alqoyyum.'
+---
+
+<Layout title={title} description={description}>
+  <article class="mx-auto max-w-3xl">
+    <header class="border-b border-stone-200 pb-5 dark:border-zinc-800">
+      <h1
+        class="text-3xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+      >
+        Privacy Policy
+      </h1>
+      <p class="mt-3 text-sm leading-6 text-stone-600 dark:text-zinc-400">
+        Last updated: March 17, 2026
+      </p>
+    </header>
+
+    <div
+      class="mt-8 space-y-8 text-[15px] leading-7 text-stone-700 dark:text-zinc-300"
+    >
+      <section class="space-y-3">
+        <p>
+          This Privacy Policy explains how Photos Saver collects, uses, and
+          stores information when you use the Photos Saver browser extension and
+          its supporting backend service. Photos Saver is operated by Anas
+          Alqoyyum.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2
+          class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+        >
+          Information used by Photos Saver
+        </h2>
+        <p>
+          Photos Saver only requests and processes the information needed to
+          provide the upload flow.
+        </p>
+        <ul
+          class="list-disc space-y-2 pl-5 marker:text-stone-400 dark:marker:text-zinc-600"
+        >
+          <li>
+            Google account identity information, such as the Google user
+            identifier returned during sign-in.
+          </li>
+          <li>
+            Google OAuth tokens, including an encrypted refresh token stored by
+            the backend so the app can request new access tokens when needed.
+          </li>
+          <li>
+            Image upload data that you explicitly send, including the image
+            payload, filename, source URL, content type, and optional page URL.
+          </li>
+          <li>
+            Temporary session and auth records needed to complete sign-in and
+            maintain an authenticated session.
+          </li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2
+          class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+        >
+          How information is used
+        </h2>
+        <ul
+          class="list-disc space-y-2 pl-5 marker:text-stone-400 dark:marker:text-zinc-600"
+        >
+          <li>Authenticate you with Google.</li>
+          <li>Upload images you choose to your Google Photos library.</li>
+          <li>
+            Maintain session continuity and keep the app working securely.
+          </li>
+          <li>Diagnose operational or security issues when needed.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3">
+        <h2
+          class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+        >
+          Storage and retention
+        </h2>
+        <p>
+          Refresh tokens are encrypted at rest in the backend data store.
+          Temporary auth state, exchange codes, and session records are stored
+          only for the limited time required for sign-in and session management.
+          Uploaded image data is handled for the purpose of completing the
+          requested upload.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2
+          class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+        >
+          Third-party services
+        </h2>
+        <p>
+          Photos Saver relies on third-party infrastructure to operate,
+          including:
+        </p>
+        <ul
+          class="list-disc space-y-2 pl-5 marker:text-stone-400 dark:marker:text-zinc-600"
+        >
+          <li>Google APIs and Google Photos</li>
+          <li>
+            Cloudflare Workers, KV, and D1 for backend hosting and storage
+          </li>
+        </ul>
+        <p>
+          Those services may process data as required to provide their
+          platforms. Their handling of data is governed by their own terms and
+          privacy policies.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2
+          class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+        >
+          Data sharing
+        </h2>
+        <p>
+          Photos Saver does not sell personal data. Data is only shared with
+          service providers or APIs involved in delivering the requested
+          functionality.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2
+          class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+        >
+          Your choices
+        </h2>
+        <p>
+          You may stop using Photos Saver at any time. You may also revoke the
+          app's Google access from your Google account settings, which may
+          disable the service until you authenticate again.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2
+          class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+        >
+          Contact
+        </h2>
+        <p>
+          For questions about this policy, use the public contact links listed
+          in the footer of this page.
+        </p>
+      </section>
+    </div>
+  </article>
+</Layout>

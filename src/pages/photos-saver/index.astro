@@ -1,0 +1,214 @@
+---
+import Layout from '../../layouts/PhotosSaverLayout.astro'
+
+const title = 'Photos Saver - Google Photos companion app'
+const description =
+  'Photos Saver is a Chrome extension and backend service that helps you save images from the web directly to Google Photos.'
+---
+
+<Layout title={title} description={description}>
+  <article class="grid gap-10 lg:grid-cols-[minmax(0,1.6fr)_18rem]">
+    <section class="space-y-10">
+      <div class="max-w-3xl space-y-5">
+        <h1
+          class="text-4xl font-semibold tracking-tight text-stone-950 sm:text-5xl dark:text-zinc-50"
+        >
+          Save images to Google Photos without breaking your browsing flow.
+        </h1>
+        <p class="text-lg leading-8 text-stone-700 dark:text-zinc-300">
+          Photos Saver is a Chrome extension with a lightweight backend that
+          signs you in with Google and uploads only the images you explicitly
+          choose to save.
+        </p>
+        <div class="flex flex-wrap gap-3 pt-1 text-sm font-medium">
+          <a
+            href="/photos-saver/privacy-policy"
+            class="rounded-md bg-stone-900 px-4 py-2.5 text-white transition-colors duration-150 hover:bg-stone-700 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-300"
+          >
+            Privacy Policy
+          </a>
+          <a
+            href="/photos-saver/terms-of-service"
+            class="rounded-md border border-stone-300 px-4 py-2.5 text-stone-800 transition-colors duration-150 hover:border-stone-500 hover:bg-stone-100 dark:border-zinc-700 dark:text-zinc-200 dark:hover:border-zinc-500 dark:hover:bg-zinc-900"
+          >
+            Terms of Service
+          </a>
+        </div>
+      </div>
+
+      <section class="border-t border-stone-200 pt-6 dark:border-zinc-800">
+        <h2
+          class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+        >
+          What the product does
+        </h2>
+        <div class="mt-5 grid gap-4 md:grid-cols-3">
+          <div
+            class="rounded-lg border border-stone-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900"
+          >
+            <h3
+              class="text-base font-semibold text-stone-950 dark:text-zinc-50"
+            >
+              Authenticate
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-stone-600 dark:text-zinc-400">
+              Signs you in with Google so the app can act on your behalf.
+            </p>
+          </div>
+          <div
+            class="rounded-lg border border-stone-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900"
+          >
+            <h3
+              class="text-base font-semibold text-stone-950 dark:text-zinc-50"
+            >
+              Upload
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-stone-600 dark:text-zinc-400">
+              Sends selected images to Google Photos only when you trigger the
+              action.
+            </p>
+          </div>
+          <div
+            class="rounded-lg border border-stone-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900"
+          >
+            <h3
+              class="text-base font-semibold text-stone-950 dark:text-zinc-50"
+            >
+              Maintain access
+            </h3>
+            <p class="mt-2 text-sm leading-6 text-stone-600 dark:text-zinc-400">
+              Uses encrypted refresh tokens on the backend to keep the session
+              usable.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="grid gap-8 border-t border-stone-200 pt-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] dark:border-zinc-800"
+      >
+        <div>
+          <h2
+            class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+          >
+            How Photos Saver works
+          </h2>
+          <ol
+            class="mt-5 space-y-4 text-sm leading-6 text-stone-700 dark:text-zinc-300"
+          >
+            <li class="border-l-2 border-stone-300 pl-4 dark:border-zinc-700">
+              You choose an image from a supported page and ask the extension to
+              save it.
+            </li>
+            <li class="border-l-2 border-stone-300 pl-4 dark:border-zinc-700">
+              The extension authenticates with Google through the backend
+              service.
+            </li>
+            <li class="border-l-2 border-stone-300 pl-4 dark:border-zinc-700">
+              The backend requests a Google access token and sends the chosen
+              image to Google Photos.
+            </li>
+          </ol>
+        </div>
+
+        <div>
+          <h2
+            class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
+          >
+            What access is requested
+          </h2>
+          <dl class="mt-5 space-y-4 text-sm leading-6">
+            <div>
+              <dt class="font-medium text-stone-950 dark:text-zinc-50">
+                `openid` and `email`
+              </dt>
+              <dd class="mt-1 text-stone-600 dark:text-zinc-400">
+                Used to identify the signed-in Google account during
+                authentication.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-medium text-stone-950 dark:text-zinc-50">
+                `photoslibrary.appendonly`
+              </dt>
+              <dd class="mt-1 text-stone-600 dark:text-zinc-400">
+                Used only to upload media that you intentionally submit through
+                the app.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+    </section>
+
+    <aside class="space-y-6">
+      <section
+        class="rounded-lg border border-stone-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900"
+      >
+        <h2 class="text-base font-semibold text-stone-950 dark:text-zinc-50">
+          At a glance
+        </h2>
+        <dl class="mt-4 space-y-4 text-sm leading-6">
+          <div>
+            <dt class="text-stone-500 dark:text-zinc-500">Operator</dt>
+            <dd class="mt-1 text-stone-900 dark:text-zinc-100">
+              Anas Alqoyyum
+            </dd>
+          </div>
+          <div>
+            <dt class="text-stone-500 dark:text-zinc-500">Product type</dt>
+            <dd class="mt-1 text-stone-900 dark:text-zinc-100">
+              Browser extension with backend service
+            </dd>
+          </div>
+          <div>
+            <dt class="text-stone-500 dark:text-zinc-500">Primary use</dt>
+            <dd class="mt-1 text-stone-900 dark:text-zinc-100">
+              Save user-selected images to Google Photos
+            </dd>
+          </div>
+        </dl>
+      </section>
+
+      <section
+        class="rounded-lg border border-stone-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900"
+      >
+        <h2 class="text-base font-semibold text-stone-950 dark:text-zinc-50">
+          Policies
+        </h2>
+        <ul
+          class="mt-4 space-y-3 text-sm leading-6 text-stone-700 dark:text-zinc-300"
+        >
+          <li>
+            <a
+              href="/photos-saver/privacy-policy"
+              class="border-b border-stone-300 pb-0.5 transition-colors duration-150 hover:border-stone-500 hover:text-stone-950 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+            >
+              Read the Privacy Policy
+            </a>
+          </li>
+          <li>
+            <a
+              href="/photos-saver/terms-of-service"
+              class="border-b border-stone-300 pb-0.5 transition-colors duration-150 hover:border-stone-500 hover:text-stone-950 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+            >
+              Read the Terms of Service
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <section
+        class="rounded-lg border border-stone-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900"
+      >
+        <h2 class="text-base font-semibold text-stone-950 dark:text-zinc-50">
+          Independence
+        </h2>
+        <p class="mt-3 text-sm leading-6 text-stone-600 dark:text-zinc-400">
+          Photos Saver is an independent product and is not affiliated with,
+          endorsed by, or sponsored by Google.
+        </p>
+      </section>
+    </aside>
+  </article>
+</Layout>
