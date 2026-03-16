@@ -3,23 +3,36 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Not Found">
-  <div class="m-auto flex max-w-2xl flex-col items-center justify-center">
+  <div class="my-auto flex flex-col items-start justify-center max-w-xl">
+    <span
+      class="font-mono text-xs uppercase tracking-[0.2em] mb-6"
+      style="color: var(--text-muted)"
+    >
+      Error
+    </span>
     <h1
-      class="mb-4 text-8xl font-bold tracking-tight text-black md:text-9xl dark:text-white"
+      class="font-serif font-light italic leading-none mb-4"
+      style="font-size: clamp(5rem, 20vw, 12rem); color: var(--text)"
     >
       418
     </h1>
-    <h2 class="mb-4 text-5xl font-bold tracking-tight md:text-6xl">
+    <h2
+      class="font-serif font-medium text-2xl sm:text-3xl mb-4"
+      style="color: var(--text)"
+    >
       I'm a Teapot
     </h2>
-    <p class="mb-8 text-slate-700 dark:text-slate-300">
-      Actually, page haven't been found but error 404 is too boring.
+    <p class="text-sm leading-relaxed mb-8" style="color: var(--text-muted)">
+      Actually, the page hasn't been found —<br />but 404 is too boring.
     </p>
     <a
       href="/"
-      class="mx-auto w-64 rounded-md bg-slate-100 p-2 text-center font-bold sm:p-4 dark:bg-slate-900"
+      class="font-mono text-xs uppercase tracking-[0.15em] px-5 py-3 transition-all duration-200 rounded-sm"
+      style="color: var(--accent); border: 1px solid var(--accent)"
+      onmouseover="this.style.backgroundColor='var(--accent)'; this.style.color='var(--bg)'"
+      onmouseout="this.style.backgroundColor=''; this.style.color='var(--accent)'"
     >
-      Return Home</a
-    >
+      Return Home
+    </a>
   </div>
 </Layout>

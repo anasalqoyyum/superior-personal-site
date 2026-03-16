@@ -4,25 +4,34 @@ import type { CollectionEntry } from 'astro:content'
 type Props = CollectionEntry<'blog'>['data'] & { url: string }
 
 const { title, summary, url, publishedAt } = Astro.props
-const publishDate = new Date(publishedAt).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-})
+const d = new Date(publishedAt)
+const shortDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 ---
 
-<article class="group border-b pb-6 transition-all dark:border-gray-700">
-  <a href={url} class="block">
-    <div class="flex flex-col space-y-2">
+<article class="group">
+  <a
+    href={url}
+    class="flex items-start gap-5 sm:gap-8 py-3.5 -mx-3 px-3 rounded-sm transition-colors duration-150"
+    onmouseover="this.style.backgroundColor='var(--surface)'"
+    onmouseout="this.style.backgroundColor=''"
+  >
+    <time
+      class="font-mono text-xs shrink-0 w-[4.5rem] pt-[0.3rem]"
+      datetime={publishedAt}
+      style="color: var(--text-muted)"
+    >
+      {shortDate}
+    </time>
+    <div class="flex-1 min-w-0">
       <h2
-        class="text-2xl font-semibold text-slate-900 transition-colors group-hover:text-sky-500 dark:text-slate-100"
+        class="font-serif text-lg sm:text-xl font-medium leading-snug transition-colors duration-150"
+        style="color: var(--text)"
+        onmouseover="this.style.color='var(--accent)'"
+        onmouseout="this.style.color='var(--text)'"
       >
         {title}
       </h2>
-      <p class="text-sm text-gray-600 dark:text-gray-400">
-        {publishDate}
-      </p>
-      <p class="text-base text-gray-700 dark:text-gray-300">
+      <p class="mt-0.5 text-sm leading-relaxed line-clamp-2" style="color: var(--text-muted)">
         {summary}
       </p>
     </div>

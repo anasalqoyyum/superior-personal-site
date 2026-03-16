@@ -1,5 +1,4 @@
 ---
-import ActiveLink from '../components/ActiveLink.astro'
 import type { Props as HeadProps } from '../components/BaseHead.astro'
 import BaseHead from '../components/BaseHead.astro'
 import { SOCIAL_LINK } from '../consts'
@@ -16,76 +15,100 @@ const isHome = pathname === '/'
   </head>
 
   <body
-    class={`preload-transitions bg-white text-slate-800 dark:text-slate-200 dark:bg-neutral-900 min-w-[20rem]
-	antialiased${isHome ? ' flex items-center' : ''}`}
+    class={`preload-transitions min-w-[20rem] antialiased${isHome ? ' flex items-center' : ''}`}
   >
     <div
-      class={`w-full m-auto p-6 flex-grow flex flex-col max-w-3xl lg:max-w-5xl ${isHome ? 'h-full max-h-[44rem]' : 'min-h-full'}`}
+      class={`w-full mx-auto px-6 flex-grow flex flex-col max-w-3xl lg:max-w-4xl ${isHome ? 'h-full max-h-[48rem]' : 'min-h-full'}`}
     >
-      <header>
-        <a href="#skip" class="sr-only focus:not-sr-only"> Skip to content</a>
-        <nav class="text-sm sm:text-base">
-          <ul class="flex w-full space-x-4">
-            <li class="nav-link">
-              <ActiveLink href="/blog">Blog</ActiveLink>
+      <header class="py-6" style="border-bottom: 1px solid var(--border)">
+        <a href="#skip" class="sr-only focus:not-sr-only">Skip to content</a>
+        <nav class="flex items-center justify-between">
+          {
+            !isHome && (
+              <a
+                href="/"
+                class="font-serif text-base font-medium tracking-wide transition-colors duration-200"
+                style="color: var(--text)"
+                onmouseover="this.style.color='var(--accent)'"
+                onmouseout="this.style.color='var(--text)'"
+              >
+                Anas Alqoyyum
+              </a>
+            )
+          }
+          <ul class="flex items-center gap-6 text-sm tracking-wide">
+            <li>
+              <a
+                href="/blog"
+                class="nav-item transition-colors duration-200"
+                style={pathname.startsWith('/blog') ? 'color: var(--accent); font-weight: 500' : 'color: var(--text-muted)'}
+                onmouseover="if(!this.style.fontWeight || this.style.fontWeight !== '500') this.style.color='var(--text)'"
+                onmouseout={`if(this.style.fontWeight !== '500') this.style.color='var(--text-muted)'`}
+              >
+                Writing
+              </a>
             </li>
-            <li class="nav-link">
+            <li>
               <a
                 href="https://kakekane.com"
                 target="_blank"
                 rel="noreferrer noopener"
-                class={`inline-block text-slate-500 dark:text-slate-300 transition-colors duration-200 border-b dark:border-slate-700 hover:border-current`}
+                class="transition-colors duration-200"
+                style="color: var(--text-muted)"
+                onmouseover="this.style.color='var(--text)'"
+                onmouseout="this.style.color='var(--text-muted)'"
               >
-                Works
+                Works ↗
               </a>
             </li>
-            <!-- disabled for now -->
-            <!-- <li class="nav-link"> -->
-            <!--   <ActiveLink href="/compendium">Compendium</ActiveLink> -->
-            <!-- </li> -->
-            <li class="nav-link">
-              <ActiveLink href="/about">About</ActiveLink>
+            <li>
+              <a
+                href="/about"
+                class="nav-item transition-colors duration-200"
+                style={pathname.startsWith('/about') ? 'color: var(--accent); font-weight: 500' : 'color: var(--text-muted)'}
+                onmouseover="if(!this.style.fontWeight || this.style.fontWeight !== '500') this.style.color='var(--text)'"
+                onmouseout={`if(this.style.fontWeight !== '500') this.style.color='var(--text-muted)'`}
+              >
+                About
+              </a>
             </li>
-            {
-              !isHome && (
-                <li class="nav-link">
-                  <ActiveLink href="/">Home</ActiveLink>
-                </li>
-              )
-            }
           </ul>
         </nav>
       </header>
+
       <main id="skip" class="flex flex-grow flex-col py-12">
         <slot />
       </main>
+
       <footer
-        class="mb-4 flex flex-col justify-between text-sm sm:flex-row sm:items-end sm:text-base"
+        class="py-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm"
+        style="border-top: 1px solid var(--border)"
       >
-        <ul class="mr-6 flex max-w-full flex-shrink-0 flex-wrap">
+        <ul class="flex flex-wrap gap-x-5 gap-y-1">
           {
             SOCIAL_LINK.map(([label, href]) => (
-              <Fragment key={href}>
-                <li class="mt-2 mr-4">
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    class="link-emoji relative inline-block border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
-                  >
-                    {label}
-                  </a>
-                </li>
-              </Fragment>
+              <li>
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="transition-colors duration-200"
+                  style="color: var(--text-muted)"
+                  onmouseover="this.style.color='var(--text)'"
+                  onmouseout="this.style.color='var(--text-muted)'"
+                >
+                  {label}
+                </a>
+              </li>
             ))
           }
         </ul>
-        <section
-          class="-m-1 mt-4 mr-auto max-w-full overflow-hidden p-1 sm:mt-0 sm:mr-0"
-        >
-        </section>
+        <span class="font-mono text-xs" style="color: var(--text-muted)">
+          anasalqoyyum.dev
+        </span>
       </footer>
     </div>
+
     <script is:inline>
       setTimeout(() => {
         if (

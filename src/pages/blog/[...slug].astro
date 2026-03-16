@@ -33,7 +33,7 @@ const publishDate = new Date(publishedAt).toLocaleDateString('en-US', {
 })
 const { text: readingTime } = calcReadingTime(post.body || '')
 const { pathname } = Astro.url
-const githubFileUrl = `https://github.com/anasalqoyyum/superior-personal-site/edit/master/src/content{pathname.replace(//$/, '')}.md`
+const githubFileUrl = `https://github.com/anasalqoyyum/superior-personal-site/edit/master/src/content${pathname.replace(/\/$/, '')}.md`
 
 const buildUrl = () => {
   switch (lang) {
@@ -58,15 +58,12 @@ const altLang = () => {
 ---
 
 <Layout title={title}>
-  <article
-    class="my-6"
-    item-prop="blogPost"
-    item-scope
-    item-type="https://schema.org/BlogPosting"
-  >
+  <article class="my-6" item-prop="blogPost" item-scope item-type="https://schema.org/BlogPosting">
+    <!-- Title row -->
     <div class="mb-6 flex flex-col justify-between sm:flex-row">
       <h1
-        class="w-3/4 text-4xl font-bold tracking-tight md:w-[85%] md:text-5xl"
+        class="font-serif font-semibold leading-tight"
+        style="font-size: clamp(1.75rem, 5vw, 3rem); color: var(--text); width: 85%"
         item-prop="name headline"
       >
         {title}
@@ -74,7 +71,10 @@ const altLang = () => {
       {
         isMultiLang && (
           <a
-            class="mt-6 text-sm text-slate-500 underline transition-colors duration-200 sm:w-1/4 sm:self-center sm:text-end dark:text-slate-300"
+            class="mt-4 text-sm sm:w-1/4 sm:self-center sm:text-end transition-colors duration-150"
+            style="color: var(--text-muted)"
+            onmouseover="this.style.color='var(--accent)'"
+            onmouseout="this.style.color='var(--text-muted)'"
             href={buildUrl()}
           >
             Read in {altLang()}?
@@ -82,35 +82,37 @@ const altLang = () => {
         )
       }
     </div>
-    <header class="mb-8 flex items-center sm:mb-10">
+
+    <!-- Author + metadata -->
+    <header
+      class="mb-10 flex items-center gap-3 pb-6"
+      style="border-bottom: 1px solid var(--border)"
+    >
       <figure
-        class="mr-4 h-8 w-8 flex-shrink-0 overflow-hidden rounded-full bg-slate-200 ring-1 ring-slate-200 sm:h-6 sm:w-6 dark:ring-slate-800"
+        class="h-7 w-7 shrink-0 overflow-hidden rounded-full ring-1"
+        style="ring-color: var(--border)"
       >
-        <Image src={photo} height={48} width={48} alt="Anas Alqoyyum" />
+        <Image src={photo} height={40} width={40} alt="Anas Alqoyyum" class="h-full w-full object-cover" />
       </figure>
-      <div
-        class="flex flex-col text-sm sm:w-full sm:flex-row sm:justify-between"
-      >
-        <div class="text-slate-600 dark:text-slate-400">
-          <span
-            item-prop="author"
-            item-scope
-            item-type="https://schema.org/Person"
-          >
+      <div class="flex flex-1 flex-col text-sm sm:flex-row sm:justify-between">
+        <div style="color: var(--text-muted)">
+          <span item-prop="author" item-scope item-type="https://schema.org/Person">
             <span item-prop="name">Anas Alqoyyum</span>
           </span>
-          at
+          <span class="mx-1.5" aria-hidden="true">·</span>
           <time item-prop="datePublished" date-time={publishedAt}>
             {publishDate}
           </time>
         </div>
-        <div class="text-slate-500">
+        <div class="font-mono text-xs mt-0.5 sm:mt-0 sm:self-center" style="color: var(--text-muted)">
           {readingTime}
         </div>
       </div>
     </header>
+
+    <!-- Article body -->
     <section
-      class="prose dark:prose-dark prose-invert mx-auto mb-6 w-full max-w-none font-sans"
+      class="prose mx-auto mb-8 w-full max-w-none font-sans"
       item-prop="articleBody"
     >
       <img
@@ -118,19 +120,27 @@ const altLang = () => {
         alt={thumbnailAlt}
         class="mx-auto block max-w-[50%]"
       />
-      <div class="text-center text-xs break-all text-slate-500">
+      <div class="text-center text-xs break-all" style="color: var(--text-muted)">
         {thumbnailSource}
       </div>
       <Content />
     </section>
+
+    <!-- Footer -->
     <footer
-      class="mx-auto flex w-full justify-between text-slate-600 dark:text-slate-400"
+      class="flex w-full justify-between pt-6"
+      style="border-top: 1px solid var(--border)"
     >
       <div class="text-sm">
         <a
-          class="inline-block border-b border-transparent transition hover:border-slate-600"
-          href={githubFileUrl}>Edit on GitHub</a
+          class="transition-colors duration-150"
+          style="color: var(--text-muted)"
+          onmouseover="this.style.color='var(--text)'"
+          onmouseout="this.style.color='var(--text-muted)'"
+          href={githubFileUrl}
         >
+          Edit on GitHub
+        </a>
       </div>
     </footer>
   </article>
