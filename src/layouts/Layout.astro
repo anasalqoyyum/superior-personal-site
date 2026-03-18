@@ -2,6 +2,7 @@
 import type { Props as HeadProps } from '../components/BaseHead.astro'
 import BaseHead from '../components/BaseHead.astro'
 import { SOCIAL_LINK } from '../consts'
+import NowPlaying from '../components/NowPlaying'
 
 const { title, description } = Astro.props as HeadProps
 
@@ -108,6 +109,8 @@ const isHome = pathname === '/'
         </span>
       </footer>
     </div>
+
+    <NowPlaying client:idle />
 
     <script is:inline>
       setTimeout(() => {

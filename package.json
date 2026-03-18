@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && wrangler pages functions build --outdir=./dist/_worker.js/",
+    "deploy": "bun run build && wrangler deploy",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write ."
