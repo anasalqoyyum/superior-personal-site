@@ -274,13 +274,3 @@
 .track-link:hover > *:first-child {
   @apply scale-110 transform opacity-100;
 }
-
-/* Now Playing widget entrance animation */
-@keyframes nowPlayingIn {
-  from { opacity: 0; transform: translateY(8px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.now-playing-in {
-  animation: nowPlayingIn 0.3s ease forwards;
-}

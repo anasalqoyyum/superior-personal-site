@@ -14,12 +14,7 @@ export default defineConfig({
   site: 'https://anasalqoyyum.dev',
   integrations: [mdx(), sitemap(), react()],
   vite: {
-    plugins: [tailwindcss()],
-    server: {
-      proxy: {
-        '/api': 'http://localhost:8787',
-      },
-    },
+    plugins: [tailwindcss()]
   },
   markdown: {
     rehypePlugins: []
