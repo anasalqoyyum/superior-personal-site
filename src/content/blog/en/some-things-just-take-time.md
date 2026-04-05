@@ -1,7 +1,7 @@
 ---
 title: Some Things Just Take Time
 summary: Trees take quite a while to grow. If someone planted woods or a palm tree on a piece of land fifty years ago, they created something that cannot be bought off the shelf today.
-publishedAt: '2026-04-05'
+publishedAt: '2026-03-27'
 thumbnail: '/assets/take-time.webp'
 thumbnailAlt: 'Some Things Just Take Time'
 thumbnailSource: 'It takes time'
