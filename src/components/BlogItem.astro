@@ -5,33 +5,39 @@ type Props = CollectionEntry<'blog'>['data'] & { url: string }
 
 const { title, summary, url, publishedAt } = Astro.props
 const d = new Date(publishedAt)
-const shortDate = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+const shortDate = d.toLocaleDateString('en-US', {
+  month: 'short',
+  day: 'numeric'
+})
 ---
 
 <article class="group">
   <a
     href={url}
-    class="flex items-start gap-5 sm:gap-8 py-3.5 -mx-3 px-3 rounded-sm transition-colors duration-150"
+    class="-mx-3 flex items-start gap-5 rounded-sm px-3 py-3.5 transition-colors duration-150 sm:gap-8"
     onmouseover="this.style.backgroundColor='var(--surface)'"
     onmouseout="this.style.backgroundColor=''"
   >
     <time
-      class="font-mono text-xs shrink-0 w-[4.5rem] pt-[0.3rem]"
+      class="w-[4.5rem] shrink-0 pt-[0.3rem] font-mono text-xs"
       datetime={publishedAt}
       style="color: var(--text-muted)"
     >
       {shortDate}
     </time>
-    <div class="flex-1 min-w-0">
+    <div class="min-w-0 flex-1">
       <h2
-        class="font-serif text-lg sm:text-xl font-medium leading-snug transition-colors duration-150"
+        class="font-serif text-lg leading-snug font-medium transition-colors duration-150 sm:text-xl"
         style="color: var(--text)"
         onmouseover="this.style.color='var(--accent)'"
         onmouseout="this.style.color='var(--text)'"
       >
         {title}
       </h2>
-      <p class="mt-0.5 text-sm leading-relaxed line-clamp-2" style="color: var(--text-muted)">
+      <p
+        class="mt-0.5 line-clamp-2 text-sm leading-relaxed"
+        style="color: var(--text-muted)"
+      >
         {summary}
       </p>
     </div>

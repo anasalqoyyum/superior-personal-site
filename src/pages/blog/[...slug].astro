@@ -59,11 +59,16 @@ const altLang = () => {
 ---
 
 <Layout title={title} description={summary}>
-  <article class="my-6" item-prop="blogPost" item-scope item-type="https://schema.org/BlogPosting">
+  <article
+    class="my-6"
+    item-prop="blogPost"
+    item-scope
+    item-type="https://schema.org/BlogPosting"
+  >
     <!-- Title row -->
     <div class="mb-6 flex flex-col justify-between sm:flex-row">
       <h1
-        class="font-serif font-semibold leading-tight"
+        class="font-serif leading-tight font-semibold"
         style="font-size: clamp(1.75rem, 5vw, 3rem); color: var(--text); width: 85%"
         item-prop="name headline"
       >
@@ -72,7 +77,7 @@ const altLang = () => {
       {
         isMultiLang && (
           <a
-            class="mt-4 text-sm sm:w-1/4 sm:self-center sm:text-end transition-colors duration-150"
+            class="mt-4 text-sm transition-colors duration-150 sm:w-1/4 sm:self-center sm:text-end"
             style="color: var(--text-muted)"
             onmouseover="this.style.color='var(--accent)'"
             onmouseout="this.style.color='var(--text-muted)'"
@@ -93,11 +98,21 @@ const altLang = () => {
         class="h-7 w-7 shrink-0 overflow-hidden rounded-full ring-1"
         style="ring-color: var(--border)"
       >
-        <Image src={photo} height={40} width={40} alt="Anas Alqoyyum" class="h-full w-full object-cover" />
+        <Image
+          src={photo}
+          height={40}
+          width={40}
+          alt="Anas Alqoyyum"
+          class="h-full w-full object-cover"
+        />
       </figure>
       <div class="flex flex-1 flex-col text-sm sm:flex-row sm:justify-between">
         <div style="color: var(--text-muted)">
-          <span item-prop="author" item-scope item-type="https://schema.org/Person">
+          <span
+            item-prop="author"
+            item-scope
+            item-type="https://schema.org/Person"
+          >
             <span item-prop="name">Anas Alqoyyum</span>
           </span>
           <span class="mx-1.5" aria-hidden="true">·</span>
@@ -105,7 +120,10 @@ const altLang = () => {
             {publishDate}
           </time>
         </div>
-        <div class="font-mono text-xs mt-0.5 sm:mt-0 sm:self-center" style="color: var(--text-muted)">
+        <div
+          class="mt-0.5 font-mono text-xs sm:mt-0 sm:self-center"
+          style="color: var(--text-muted)"
+        >
           {readingTime}
         </div>
       </div>
@@ -121,7 +139,10 @@ const altLang = () => {
         alt={thumbnailAlt}
         class="mx-auto block max-w-[50%]"
       />
-      <div class="text-center text-xs break-all" style="color: var(--text-muted)">
+      <div
+        class="text-center text-xs break-all"
+        style="color: var(--text-muted)"
+      >
         {thumbnailSource}
       </div>
       <Content />

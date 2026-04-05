@@ -1,0 +1,203 @@
+---
+import Layout from '../layouts/Layout.astro'
+import { opusMagnumSolutions } from '../utils/opus-magnum'
+
+const title = 'Opus Magnum Solution'
+const description =
+  'A gallery of my Opus Magnum solution GIFs, complete with puzzle name, cost, cycles, and area.'
+
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
+
+const formatStat = (label: string, value: string) => `
+  <div class="stat-card">
+    <dt class="stat-label">${label}</dt>
+    <dd class="stat-value">${value}</dd>
+  </div>
+`
+
+const cardsMarkup = opusMagnumSolutions
+  .map((solution, index) => {
+    const cost = solution.cost === null ? 'N/A' : `${solution.cost}G`
+    const cycles =
+      solution.cycles === null ? 'N/A' : solution.cycles.toLocaleString('en')
+    const area =
+      solution.area === null ? 'N/A' : solution.area.toLocaleString('en')
+    const mediaMarkup =
+      solution.mimeType === 'video/webm'
+        ? [
+            '<video',
+            '  class="solution-media h-full w-full object-cover"',
+            '  autoplay',
+            '  muted',
+            '  loop',
+            '  playsinline',
+            `  preload="${index > 5 ? 'metadata' : 'auto'}"`,
+            '>',
+            `  <source src="${escapeHtml(solution.src)}" type="video/webm" />`,
+            '</video>'
+          ].join('\n')
+        : [
+            '<img',
+            `  src="${escapeHtml(solution.src)}"`,
+            `  alt="Opus Magnum solution GIF for ${escapeHtml(solution.puzzleName)}"`,
+            '  class="solution-media h-full w-full object-cover"',
+            `  loading="${index > 5 ? 'lazy' : 'eager'}"`,
+            '  decoding="async"',
+            '/>'
+          ].join('\n')
+
+    return `
+      <article class="gallery-card rounded-[1.4rem] border p-3 sm:p-4">
+        <a
+          href="${escapeHtml(solution.src)}"
+          target="_blank"
+          rel="noreferrer"
+          class="group block"
+          aria-label="Open ${escapeHtml(solution.puzzleName)} GIF in a new tab"
+        >
+          <div class="media-frame overflow-hidden rounded-[1rem] border">
+            ${mediaMarkup}
+          </div>
+        </a>
+
+        <div class="mt-4 space-y-3">
+          <h2 class="text-xl font-semibold tracking-[-0.02em] text-[var(--text)]">
+            ${escapeHtml(solution.puzzleName)}
+          </h2>
+
+          <dl class="grid grid-cols-3 gap-2 border-t pt-3" style="border-color: var(--border)">
+            ${formatStat('Cost', cost)}
+            ${formatStat('Cycles', cycles)}
+            ${formatStat('Area', area)}
+          </dl>
+        </div>
+      </article>
+    `
+  })
+  .join('')
+---
+
+<Layout title={`${title} - Anas Alqoyyum`} description={description}>
+  <section class="opus-shell mx-auto w-full max-w-6xl">
+    <div class="space-y-6">
+      <div class="space-y-4">
+        <h1
+          class="max-w-3xl font-serif text-5xl leading-none font-semibold tracking-[-0.04em] text-[var(--text)] sm:text-6xl"
+        >
+          Opus Magnum Solution
+        </h1>
+        <p class="max-w-3xl text-lg leading-8 text-[var(--text-muted)]">
+          Opus Magnum is a puzzle-based programming game by Zachtronics where
+          you design alchemical machines on a hex-grid transmutation engine.
+          These solutions are shown with the three metrics the game is best
+          known for: cost, cycles, and area.
+        </p>
+        <p class="max-w-3xl text-sm leading-7 text-[var(--text-muted)]">
+          Note: these are my personal solutions and may not be the best-sum
+          solutions for each puzzle.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-5 lg:grid-cols-2" set:html={cardsMarkup} />
+  </section>
+</Layout>
+
+<style>
+  .opus-shell {
+    position: relative;
+  }
+
+  :global(.gallery-card) {
+    border-color: color-mix(in srgb, var(--border) 88%, transparent);
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--surface) 74%, transparent),
+      color-mix(in srgb, var(--bg) 92%, transparent)
+    );
+    box-shadow: 0 16px 50px -34px rgba(15, 23, 42, 0.42);
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
+  }
+
+  :global(.gallery-card:hover),
+  :global(.gallery-card:focus-within) {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--accent) 24%, var(--border));
+    box-shadow: 0 28px 65px -38px rgba(15, 23, 42, 0.5);
+  }
+
+  :global(.media-frame) {
+    aspect-ratio: 4 / 3;
+    border-color: color-mix(in srgb, var(--border) 94%, transparent);
+    background:
+      radial-gradient(
+        circle at top,
+        rgba(255, 255, 255, 0.08),
+        transparent 42%
+      ),
+      color-mix(in srgb, var(--surface) 85%, black 15%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  :global(.solution-media) {
+    transition:
+      transform 220ms ease,
+      filter 220ms ease;
+    filter: saturate(0.96) contrast(1.02);
+  }
+
+  :global(.group:hover .solution-media),
+  :global(.group:focus-visible .solution-media) {
+    transform: scale(1.02);
+    filter: saturate(1.04) contrast(1.04);
+  }
+
+  :global(.stat-card) {
+    border-radius: 1rem;
+    border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+    padding: 0.5rem 0.75rem;
+    background: color-mix(in srgb, var(--surface) 78%, transparent);
+  }
+
+  :global(.stat-label) {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  :global(.stat-value) {
+    margin-top: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(.gallery-card) {
+      box-shadow: 0 22px 60px -42px rgba(0, 0, 0, 0.72);
+    }
+
+    :global(.media-frame) {
+      background:
+        radial-gradient(
+          circle at top,
+          rgba(255, 255, 255, 0.05),
+          transparent 42%
+        ),
+        color-mix(in srgb, var(--surface) 84%, black 16%);
+    }
+  }
+</style>

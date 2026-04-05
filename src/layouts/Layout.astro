@@ -7,6 +7,32 @@ const { title, description } = Astro.props as HeadProps
 
 const { pathname } = Astro.url
 const isHome = pathname === '/'
+
+const escapeHtml = (value: string) =>
+  value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
+
+const socialLinksMarkup = SOCIAL_LINK.map(
+  ([label, href]) => `
+    <li>
+      <a
+        href="${escapeHtml(href)}"
+        target="_blank"
+        rel="noreferrer"
+        class="transition-colors duration-200"
+        style="color: var(--text-muted)"
+        onmouseover="this.style.color='var(--text)'"
+        onmouseout="this.style.color='var(--text-muted)'"
+      >
+        ${escapeHtml(label)}
+      </a>
+    </li>
+  `
+).join('')
 ---
 
 <html lang="en">
@@ -41,7 +67,9 @@ const isHome = pathname === '/'
               <a
                 href="/blog"
                 class="nav-item transition-colors duration-200"
-                style={pathname.startsWith('/blog') ? 'color: var(--accent); font-weight: 500' : 'color: var(--text-muted)'}
+                style={pathname.startsWith('/blog')
+                  ? 'color: var(--accent); font-weight: 500'
+                  : 'color: var(--text-muted)'}
                 onmouseover="if(!this.style.fontWeight || this.style.fontWeight !== '500') this.style.color='var(--text)'"
                 onmouseout={`if(this.style.fontWeight !== '500') this.style.color='var(--text-muted)'`}
               >
@@ -65,13 +93,45 @@ const isHome = pathname === '/'
               <a
                 href="/about"
                 class="nav-item transition-colors duration-200"
-                style={pathname.startsWith('/about') ? 'color: var(--accent); font-weight: 500' : 'color: var(--text-muted)'}
+                style={pathname.startsWith('/about')
+                  ? 'color: var(--accent); font-weight: 500'
+                  : 'color: var(--text-muted)'}
                 onmouseover="if(!this.style.fontWeight || this.style.fontWeight !== '500') this.style.color='var(--text)'"
                 onmouseout={`if(this.style.fontWeight !== '500') this.style.color='var(--text-muted)'`}
               >
                 About
               </a>
             </li>
+            {
+              isHome && (
+                <li>
+                  <div class="gallery-menu relative">
+                    <button
+                      type="button"
+                      class="gallery-trigger inline-flex items-center gap-2 transition-colors duration-200"
+                      aria-haspopup="menu"
+                    >
+                      Gallery
+                      <span class="gallery-caret text-[0.7em]">▾</span>
+                    </button>
+
+                    <div class="gallery-popover pointer-events-none absolute top-full right-0 z-10 flex min-w-48 justify-end pt-3">
+                      <div
+                        class="gallery-panel rounded-xl border p-2 shadow-lg"
+                        style="border-color: var(--border); background: var(--bg)"
+                      >
+                        <a
+                          href="/opus-magnum"
+                          class="gallery-link block rounded-lg px-3 py-2 transition-colors duration-200"
+                        >
+                          Opus Magnum
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              )
+            }
           </ul>
         </nav>
       </header>
@@ -81,28 +141,13 @@ const isHome = pathname === '/'
       </main>
 
       <footer
-        class="py-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm"
+        class="flex flex-col gap-3 py-6 text-sm sm:flex-row sm:items-center sm:justify-between"
         style="border-top: 1px solid var(--border)"
       >
-        <ul class="flex flex-wrap gap-x-5 gap-y-1">
-          {
-            SOCIAL_LINK.map(([label, href]) => (
-              <li>
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  class="transition-colors duration-200"
-                  style="color: var(--text-muted)"
-                  onmouseover="this.style.color='var(--text)'"
-                  onmouseout="this.style.color='var(--text-muted)'"
-                >
-                  {label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+        <ul
+          class="flex flex-wrap gap-x-5 gap-y-1"
+          set:html={socialLinksMarkup}
+        />
         <span class="font-mono text-xs" style="color: var(--text-muted)">
           anasalqoyyum.dev
         </span>
@@ -119,5 +164,67 @@ const isHome = pathname === '/'
         }
       }, 0)
     </script>
+
+    <style is:inline>
+      .gallery-trigger {
+        color: var(--text-muted);
+      }
+
+      .gallery-trigger:hover,
+      .gallery-menu:focus-within .gallery-trigger {
+        color: var(--text);
+      }
+
+      .gallery-trigger:focus-visible {
+        outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
+        outline-offset: 4px;
+        border-radius: 0.5rem;
+      }
+
+      .gallery-caret {
+        transition: transform 160ms ease;
+      }
+
+      .gallery-popover {
+        opacity: 0;
+        transform: translate(8rem, -0.2rem);
+        transition:
+          opacity 160ms ease,
+          transform 160ms ease;
+      }
+
+      .gallery-panel {
+        min-width: 12rem;
+        box-shadow: 0 16px 36px -24px rgba(15, 23, 42, 0.28);
+      }
+
+      .gallery-link {
+        color: var(--text-muted);
+      }
+
+      .gallery-link:hover,
+      .gallery-link:focus-visible {
+        color: var(--text);
+        background: color-mix(in srgb, var(--surface) 82%, transparent);
+      }
+
+      .gallery-menu:hover .gallery-popover,
+      .gallery-menu:focus-within .gallery-popover {
+        opacity: 1;
+        transform: translate(8rem, 0);
+        pointer-events: auto;
+      }
+
+      .gallery-menu:hover .gallery-caret,
+      .gallery-menu:focus-within .gallery-caret {
+        transform: translateY(1px);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .gallery-panel {
+          box-shadow: 0 20px 44px -28px rgba(0, 0, 0, 0.62);
+        }
+      }
+    </style>
   </body>
 </html>
