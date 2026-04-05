@@ -48,12 +48,14 @@ const socialLinksMarkup = SOCIAL_LINK.map(
     >
       <header class="py-6" style="border-bottom: 1px solid var(--border)">
         <a href="#skip" class="sr-only focus:not-sr-only">Skip to content</a>
-        <nav class="flex items-center justify-between">
+        <nav
+          class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 sm:flex-nowrap"
+        >
           {
             !isHome && (
               <a
                 href="/"
-                class="font-serif text-base font-medium tracking-wide transition-colors duration-200"
+                class="font-serif text-base leading-none font-medium tracking-wide whitespace-nowrap transition-colors duration-200"
                 style="color: var(--text)"
                 onmouseover="this.style.color='var(--accent)'"
                 onmouseout="this.style.color='var(--text)'"
@@ -62,7 +64,9 @@ const socialLinksMarkup = SOCIAL_LINK.map(
               </a>
             )
           }
-          <ul class="flex items-center gap-6 text-sm tracking-wide">
+          <ul
+            class="flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-sm tracking-wide sm:gap-6"
+          >
             <li>
               <a
                 href="/blog"
@@ -166,8 +170,19 @@ const socialLinksMarkup = SOCIAL_LINK.map(
     </script>
 
     <style is:inline>
+      .gallery-menu {
+        --gallery-popover-x: 0rem;
+      }
+
       .gallery-trigger {
+        white-space: nowrap;
         color: var(--text-muted);
+        line-height: 1;
+      }
+
+      .nav-item {
+        color: var(--text-muted);
+        line-height: 1;
       }
 
       .gallery-trigger:hover,
@@ -187,7 +202,7 @@ const socialLinksMarkup = SOCIAL_LINK.map(
 
       .gallery-popover {
         opacity: 0;
-        transform: translate(8rem, -0.2rem);
+        transform: translate(var(--gallery-popover-x), -0.2rem);
         transition:
           opacity 160ms ease,
           transform 160ms ease;
@@ -211,13 +226,19 @@ const socialLinksMarkup = SOCIAL_LINK.map(
       .gallery-menu:hover .gallery-popover,
       .gallery-menu:focus-within .gallery-popover {
         opacity: 1;
-        transform: translate(8rem, 0);
+        transform: translate(var(--gallery-popover-x), 0);
         pointer-events: auto;
       }
 
       .gallery-menu:hover .gallery-caret,
       .gallery-menu:focus-within .gallery-caret {
         transform: translateY(1px);
+      }
+
+      @media (min-width: 40rem) {
+        .gallery-menu {
+          --gallery-popover-x: 8rem;
+        }
       }
 
       @media (prefers-color-scheme: dark) {
