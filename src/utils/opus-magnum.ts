@@ -1,6 +1,5 @@
 import { readdirSync } from 'node:fs'
-import { extname } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { extname, join } from 'node:path'
 
 export interface OpusMagnumSolution {
   slug: string
@@ -17,9 +16,7 @@ export interface OpusMagnumSolution {
   capturedAtLabel: string | null
 }
 
-const assetDirectory = fileURLToPath(
-  new URL('../../public/assets/opus-magnum/', import.meta.url)
-)
+const assetDirectory = join(process.cwd(), 'public/assets/opus-magnum')
 const assetBasePath = '/assets/opus-magnum'
 const filenamePattern =
   /^Opus Magnum - (?<puzzleName>.+) \((?<cost>\d+)G,\s*(?<cycles>\d+),\s*(?<area>\d+),\s*(?<capturedAt>\d{4}-\d{2}-\d{2}-\d{2}-\d{2}-\d{2})\)(?<extension>\.[^.]+)$/i
