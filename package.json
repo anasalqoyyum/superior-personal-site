@@ -2,12 +2,15 @@
   "name": "superior-personal-site",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.26.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "image:webp": "node scripts/convert-image-to-webp.mjs",
+    "gif:webm": "node --experimental-strip-types scripts/convert-gif-to-webm.ts"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.4",
@@ -25,6 +28,7 @@
     "wrangler": "^4.43.0"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
     "@tailwindcss/typography": "^0.5.16",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",

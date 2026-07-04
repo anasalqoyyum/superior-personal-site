@@ -65,28 +65,14 @@ const altLang = () => {
     item-scope
     item-type="https://schema.org/BlogPosting"
   >
-    <!-- Title row -->
-    <div class="mb-6 flex flex-col justify-between sm:flex-row">
+    <div class="mb-6">
       <h1
         class="font-serif leading-tight font-semibold"
-        style="font-size: clamp(1.75rem, 5vw, 3rem); color: var(--text); width: 85%"
+        style="font-size: clamp(1.75rem, 5vw, 3rem); color: var(--text)"
         item-prop="name headline"
       >
         {title}
       </h1>
-      {
-        isMultiLang && (
-          <a
-            class="mt-4 text-sm transition-colors duration-150 sm:w-1/4 sm:self-center sm:text-end"
-            style="color: var(--text-muted)"
-            onmouseover="this.style.color='var(--accent)'"
-            onmouseout="this.style.color='var(--text-muted)'"
-            href={buildUrl()}
-          >
-            Read in {altLang()}?
-          </a>
-        )
-      }
     </div>
 
     <!-- Author + metadata -->
@@ -121,10 +107,23 @@ const altLang = () => {
           </time>
         </div>
         <div
-          class="mt-0.5 font-mono text-xs sm:mt-0 sm:self-center"
+          class="mt-0.5 flex items-center gap-3 font-mono text-xs sm:mt-0 sm:self-center"
           style="color: var(--text-muted)"
         >
-          {readingTime}
+          {
+            isMultiLang && (
+              <a
+                class="transition-colors duration-150"
+                style="color: var(--text-muted)"
+                onmouseover="this.style.color='var(--accent)'"
+                onmouseout="this.style.color='var(--text-muted)'"
+                href={buildUrl()}
+              >
+                {altLang()}
+              </a>
+            )
+          }
+          <span>{readingTime}</span>
         </div>
       </div>
     </header>

@@ -2,16 +2,16 @@
 
 ## Project Structure & Module Organization
 
-This repository is an Astro site managed with Bun. App routes live in `src/pages/`, shared UI in `src/components/`, and page shells in `src/layouts/`. Blog and compendium content live in `src/content/`, with language-specific blog posts under `src/content/blog/en/` and `src/content/blog/id/`. Global styles are in `src/styles/`, helper code in `src/utils.ts` and `src/scripts/`, and static assets in `public/`. Local images imported by Astro belong in `src/assets/`.
+This repository is an Astro site managed with pnpm. App routes live in `src/pages/`, shared UI in `src/components/`, and page shells in `src/layouts/`. Blog and compendium content live in `src/content/`, with language-specific blog posts under `src/content/blog/en/` and `src/content/blog/id/`. Global styles are in `src/styles/`, helper code in `src/utils.ts` and `src/scripts/`, and static assets in `public/`. Local images imported by Astro belong in `src/assets/`.
 
 ## Build, Test, and Development Commands
 
-- `bun install`: install dependencies from `bun.lock`.
-- `bun run dev`: start the local Astro dev server.
-- `bun run build`: create the production site in `dist/`.
-- `bun run preview`: preview the built site locally.
-- `bun run format`: run Prettier across the repository.
-- `bunx astro check`: run Astro and TypeScript checks for routes, props, and content collections.
+- `pnpm install`: install dependencies from `pnpm-lock.yaml`.
+- `pnpm dev`: start the local Astro dev server.
+- `pnpm build`: create the production site in `dist/`.
+- `pnpm preview`: preview the built site locally.
+- `pnpm format`: run Prettier across the repository.
+- `pnpm astro check`: run Astro and TypeScript checks for routes, props, and content collections.
 
 ## Coding Style & Naming Conventions
 
@@ -19,7 +19,7 @@ Use Prettier as the source of truth. The repo uses 2-space indentation, no semic
 
 ## Testing Guidelines
 
-There is no dedicated automated test suite yet. Before opening a PR, run `bunx astro check` and `bun run format`, then smoke-test the affected pages with `bun run dev`. For content changes, verify the generated route, metadata, and any referenced images or links.
+There is no dedicated automated test suite yet. Before opening a PR, run `pnpm astro check` and `pnpm format`, then smoke-test the affected pages with `pnpm dev`. For content changes, verify the generated route, metadata, and any referenced images or links.
 
 ## Commit & Pull Request Guidelines
 
