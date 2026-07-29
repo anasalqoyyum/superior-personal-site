@@ -8,6 +8,12 @@ import { defineConfig } from 'astro/config'
 export default defineConfig({
   site: 'https://anasalqoyyum.dev',
   integrations: [mdx(), sitemap(), react()],
+  markdown: {
+    shikiConfig: {
+      theme: 'ayu-dark',
+      wrap: false
+    }
+  },
   vite: {
     plugins: [tailwindcss()]
   }
