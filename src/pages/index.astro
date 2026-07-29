@@ -1,73 +1,556 @@
 ---
 import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
 import avatar from '../assets/images/avatar.png'
 import photo from '../assets/images/photo.jpg'
+import WaveDivider from '../components/WaveDivider.astro'
+import { SOCIAL_LINK } from '../consts'
 import Layout from '../layouts/Layout.astro'
 
 const title = 'Anas Alqoyyum — Software Engineer'
+const posts = (await getCollection('blog'))
+  .filter(post => !post.data.hidden && post.id.includes('en/'))
+  .sort(
+    (a, b) => Date.parse(b.data.publishedAt) - Date.parse(a.data.publishedAt)
+  )
+  .slice(0, 4)
+
+const projects = [
+  {
+    title: 'Selected Work',
+    summary: 'A shelf of projects I’m proud of.',
+    href: 'https://kakekane.com',
+    external: true
+  },
+  {
+    title: 'Opus Magnum Solutions',
+    summary: 'Working puzzle machines, recorded with cost, cycles, and area.',
+    href: '/opus-magnum'
+  },
+  {
+    title: 'GitHub',
+    summary: 'Source, experiments, and the occasional half-finished idea.',
+    href: 'https://github.com/anasalqoyyum/',
+    external: true
+  }
+]
+
+const sideProjects = [
+  {
+    title: 'ai-drew-toolbar',
+    summary:
+      'A browser extension that copies UI code context for AI coding tools.',
+    href: 'https://github.com/anasalqoyyum/ai-drew-toolbar',
+    action: 'source ↗'
+  },
+  {
+    title: 'msr-archiver',
+    summary:
+      'Archives Arknights soundtracks with metadata, artwork, lyrics, and FLAC conversion.',
+    href: 'https://github.com/anasalqoyyum/msr-archiver',
+    action: 'source ↗'
+  },
+  {
+    title: 'konasute-autoscener',
+    summary:
+      'An OBS scene switcher for Sound Voltex, built around OBS WebSocket.',
+    href: 'https://github.com/anasalqoyyum/konasute-autoscener',
+    action: 'source ↗'
+  },
+  {
+    title: 'Dead Simple Notes',
+    summary: 'A fast, deliberately simple Markdown note-taking app.',
+    href: 'https://note.anasalqoyyum.dev',
+    action: 'visit ↗'
+  }
+]
+
+const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
 ---
 
 <Layout title={title}>
-  <article class="my-auto">
-    <div
-      class="title flex cursor-default items-end justify-between gap-4 select-none"
-    >
-      <!-- Name — single line, large Playfair Display -->
-      <h1
-        class="font-serif leading-none font-bold tracking-tight"
-        style="font-size: clamp(2.5rem, 9vw, 6.25rem); color: var(--text)"
-      >
-        Anas Alqoyyum
-      </h1>
+  <div class="home-ledger">
+    <section class="home-left">
+      <p class="current-focus">
+        <span>&gt; current focus:&nbsp;</span>Shipping useful things; making
+        sense of them.
+      </p>
 
-      <!-- Avatar — bottom-aligned with name baseline, flips on hover of .title -->
-      <div
-        class="relative mb-1 h-16 w-16 shrink-0 sm:h-20 sm:w-20"
-        aria-hidden="true"
-      >
-        <div
-          class="avatar absolute inset-0 overflow-hidden rounded-full"
-          style="box-shadow: 0 0 0 1px var(--border)"
+      <div class="portrait-flip" data-portrait-flip data-side="art">
+        <button
+          class="portrait-stage"
+          type="button"
+          aria-label="Flip between artwork and photograph of Anas Alqoyyum"
+          aria-pressed="false"
         >
-          <Image
-            src={avatar}
-            width={80}
-            height={80}
-            loading="eager"
-            alt="Anas Alqoyyum"
-            class="h-full w-full object-cover"
-          />
-        </div>
-        <div
-          class="photo h-full w-full overflow-hidden rounded-full"
-          style="box-shadow: 0 0 0 1px var(--border)"
-        >
-          <Image
-            src={photo}
-            width={80}
-            height={80}
-            loading="eager"
-            alt="Anas Alqoyyum"
-            class="h-full w-full object-cover"
-          />
+          <span class="portrait-inner">
+            <span class="portrait-face portrait-art">
+              <Image
+                src={avatar}
+                width={720}
+                height={900}
+                loading="eager"
+                alt=""
+              />
+            </span>
+            <span class="portrait-face portrait-photo">
+              <Image
+                src={photo}
+                width={720}
+                height={900}
+                loading="eager"
+                alt=""
+              />
+            </span>
+          </span>
+        </button>
+
+        <div class="portrait-controls" aria-label="Portrait side">
+          <div>
+            <button type="button" data-set-side="art" aria-pressed="true">
+              ART
+            </button>
+            <span aria-hidden="true">/</span>
+            <button type="button" data-set-side="photo" aria-pressed="false">
+              PHOTO
+            </button>
+          </div>
+          <span>hover, focus, or tap to flip</span>
         </div>
       </div>
-    </div>
 
-    <!-- Divider + tagline -->
-    <div
-      class="mt-8 flex flex-col gap-2 pt-5 sm:flex-row sm:items-center sm:justify-between"
-      style="border-top: 1px solid var(--border)"
-    >
-      <p
-        class="font-mono text-xs tracking-[0.2em] uppercase"
-        style="color: var(--text-muted)"
-      >
-        Software Engineer
+      <WaveDivider class="section-wave" />
+
+      <section class="intro-section" aria-labelledby="intro-heading">
+        <h1 id="intro-heading" class="terminal-label">Intro</h1>
+        <p>
+          I’m Anas, a software engineer based in Jepara. I build web products,
+          teach robotics occasionally, and write down the things I want to
+          remember.
+        </p>
+      </section>
+
+      <WaveDivider class="section-wave" />
+
+      <section class="link-section" aria-labelledby="links-heading">
+        <h2 id="links-heading" class="terminal-label">Links</h2>
+        <ul>
+          {
+            projects.map(project => (
+              <li>
+                <a
+                  href={project.href}
+                  target={project.external ? '_blank' : undefined}
+                  rel={project.external ? 'noreferrer noopener' : undefined}
+                >
+                  <span aria-hidden="true">&gt;</span>
+                  {project.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <WaveDivider class="section-wave" />
+
+      <section class="link-section" aria-labelledby="social-heading">
+        <h2 id="social-heading" class="terminal-label">Social</h2>
+        <ul>
+          {
+            socials.map(([label, href]) => (
+              <li>
+                <a href={href} target="_blank" rel="noreferrer noopener">
+                  <span aria-hidden="true">&gt;</span>
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <p class="home-signoff">
+        <span aria-hidden="true">&gt;</span>
+        anasalqoyyum.dev
+        <span aria-hidden="true">|</span>
+        Made in Jepara
+        <i aria-hidden="true"></i>
       </p>
-      <p class="font-mono text-xs" style="color: var(--text-muted)">
-        Jakarta, Indonesia
-      </p>
-    </div>
-  </article>
+    </section>
+
+    <section class="home-right">
+      <section aria-labelledby="recent-heading">
+        <h2 id="recent-heading" class="terminal-label">Recent writing</h2>
+        <ol class="entry-list">
+          {
+            posts.map(post => (
+              <li>
+                <a href={`/blog/${post.id}`}>
+                  <div class="entry-heading">
+                    <h3>{post.data.title}</h3>
+                    <time datetime={post.data.publishedAt}>
+                      {post.data.publishedAt.slice(0, 10)}
+                    </time>
+                  </div>
+                  <p>{post.data.summary}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </section>
+
+      <WaveDivider class="section-wave" />
+
+      <section aria-labelledby="projects-heading">
+        <h2 id="projects-heading" class="terminal-label">Side projects</h2>
+        <ul class="entry-list project-list">
+          {
+            sideProjects.map(project => (
+              <li>
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  <div class="entry-heading">
+                    <h3>{project.title}</h3>
+                    <span>{project.action}</span>
+                  </div>
+                  <p>{project.summary}</p>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <WaveDivider class="section-wave final-wave" />
+    </section>
+  </div>
 </Layout>
+
+<script>
+  const flip = document.querySelector('[data-portrait-flip]')
+
+  if (flip instanceof HTMLElement) {
+    const stage = flip.querySelector('.portrait-stage')
+    const controls = flip.querySelectorAll('[data-set-side]')
+
+    const setSide = (side: 'art' | 'photo') => {
+      flip.dataset.side = side
+
+      if (stage instanceof HTMLButtonElement) {
+        stage.ariaPressed = String(side === 'photo')
+      }
+
+      for (const control of controls) {
+        if (control instanceof HTMLButtonElement) {
+          control.ariaPressed = String(control.dataset.setSide === side)
+        }
+      }
+    }
+
+    if (stage instanceof HTMLButtonElement) {
+      stage.addEventListener('click', () => {
+        setSide(flip.dataset.side === 'photo' ? 'art' : 'photo')
+      })
+    }
+
+    for (const control of controls) {
+      control.addEventListener('click', () => {
+        if (
+          control instanceof HTMLButtonElement &&
+          (control.dataset.setSide === 'art' ||
+            control.dataset.setSide === 'photo')
+        ) {
+          setSide(control.dataset.setSide)
+        }
+      })
+    }
+  }
+</script>
+
+<style>
+  .home-ledger {
+    display: grid;
+    min-height: calc(100dvh - 4.9rem);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  }
+
+  .home-left,
+  .home-right {
+    min-width: 0;
+    padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.75rem);
+  }
+
+  .home-left {
+    border-right: 1px solid var(--border);
+  }
+
+  .current-focus {
+    margin-bottom: 2rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.8;
+    white-space: nowrap;
+  }
+
+  .current-focus > span:first-child {
+    color: var(--accent);
+  }
+
+  .portrait-flip {
+    width: min(100%, 30rem);
+  }
+
+  .portrait-stage {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 4.65;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    perspective: 75rem;
+  }
+
+  .portrait-stage::before,
+  .portrait-stage::after {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border: 1px solid var(--border-strong);
+    background: var(--surface);
+    content: '';
+    transform: translate(0.35rem, 0.35rem);
+    transition: transform 520ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .portrait-stage::after {
+    transform: translate(0.18rem, 0.18rem);
+  }
+
+  .portrait-inner {
+    position: absolute;
+    inset: 0;
+    display: block;
+    border: 1px solid var(--border-strong);
+    transform-style: preserve-3d;
+    transition: transform 620ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .portrait-face {
+    position: absolute;
+    inset: 0;
+    display: block;
+    overflow: hidden;
+    background: var(--surface);
+    backface-visibility: hidden;
+  }
+
+  .portrait-face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .portrait-art img {
+    filter: brightness(0.72) saturate(0.82) contrast(1.04);
+  }
+
+  .portrait-photo {
+    transform: rotateY(180deg);
+  }
+
+  .portrait-photo img {
+    filter: brightness(0.72) saturate(0.72) contrast(1.03);
+  }
+
+  .portrait-stage:hover .portrait-inner,
+  .portrait-stage:focus-visible .portrait-inner,
+  .portrait-flip[data-side='photo'] .portrait-inner {
+    transform: rotateY(180deg);
+  }
+
+  .portrait-stage:hover::before,
+  .portrait-stage:focus-visible::before,
+  .portrait-flip[data-side='photo'] .portrait-stage::before {
+    transform: translate(-0.35rem, 0.35rem);
+  }
+
+  .portrait-stage:hover::after,
+  .portrait-stage:focus-visible::after,
+  .portrait-flip[data-side='photo'] .portrait-stage::after {
+    transform: translate(-0.18rem, 0.18rem);
+  }
+
+  .portrait-controls {
+    display: flex;
+    margin-top: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--text-muted);
+    font-size: 0.68rem;
+  }
+
+  .portrait-controls > div {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  .portrait-controls button {
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .portrait-flip[data-side='art'] [data-set-side='art'],
+  .portrait-flip[data-side='photo'] [data-set-side='photo'],
+  .portrait-flip:has(.portrait-stage:hover) [data-set-side='photo'],
+  .portrait-flip:has(.portrait-stage:focus-visible) [data-set-side='photo'] {
+    color: var(--accent-hover);
+  }
+
+  .portrait-flip:has(.portrait-stage:hover) [data-set-side='art'],
+  .portrait-flip:has(.portrait-stage:focus-visible) [data-set-side='art'] {
+    color: var(--text-muted);
+  }
+
+  .section-wave {
+    margin-block: 2.6rem;
+  }
+
+  .intro-section p {
+    margin-top: 1.25rem;
+    color: var(--text);
+    font-size: 0.86rem;
+    line-height: 1.9;
+  }
+
+  .link-section ul {
+    margin-top: 1.15rem;
+  }
+
+  .link-section li + li {
+    margin-top: 0.7rem;
+  }
+
+  .link-section a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+    transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .link-section a span {
+    color: var(--accent);
+  }
+
+  .link-section a:hover {
+    color: var(--accent-hover);
+  }
+
+  .home-signoff {
+    display: flex;
+    margin-top: 2.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--text-muted);
+    font-size: 0.66rem;
+  }
+
+  .home-signoff > span:first-child {
+    color: var(--signal);
+  }
+
+  .home-signoff i {
+    width: 0.42rem;
+    height: 0.42rem;
+    background: var(--signal);
+    border-radius: 50%;
+  }
+
+  .home-right .terminal-label {
+    margin-bottom: 1.4rem;
+  }
+
+  .entry-list > li {
+    border-bottom: 1px dashed var(--border-strong);
+  }
+
+  .entry-list a {
+    display: block;
+    padding-block: 1.35rem 1.55rem;
+  }
+
+  .entry-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .entry-heading h3 {
+    font-size: 0.92rem;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .entry-heading time,
+  .entry-heading > span {
+    color: var(--text-muted);
+    font-size: 0.64rem;
+    white-space: nowrap;
+  }
+
+  .entry-list p {
+    max-width: 30rem;
+    margin-top: 0.7rem;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.75;
+  }
+
+  .entry-list a:hover h3 {
+    color: var(--accent-hover);
+  }
+
+  .project-list .entry-heading > span {
+    color: var(--accent);
+  }
+
+  .final-wave {
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 48rem) {
+    .home-ledger {
+      grid-template-columns: 1fr;
+    }
+
+    .home-left {
+      border-right: 0;
+    }
+
+    .home-right {
+      border-top: 1px solid var(--border);
+    }
+
+    .current-focus {
+      white-space: normal;
+    }
+
+    .portrait-controls {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>

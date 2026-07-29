@@ -1,0 +1,57 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'svg'>
+
+const { class: className, ...props } = Astro.props
+const wavePath =
+  'M0 16h12l3-2 3 4 4-8 4 12 3-6h8l3-3 3 6 4-12 4 17 4-8h8l4-4 3 8 4-14 4 18 4-8h10l4-2 4 4 4-9 4 13 4-6h9l4-5 4 9 4-15 4 19 4-8h8l4-3 4 5 4-11 4 15 4-6h10l3-2 4 4 4-8 4 12 4-6h8l4-4 4 7 4-13 4 17 4-7h9l4-3 4 6 4-10 4 14 4-7h10l3-2 4 4 4-9 4 13 4-6h8l4-5 4 9 4-15 4 19 4-8h8l4-3 4 5 4-11 4 15 4-6h10l4-2 4 4 4-8 4 12 4-6h8l4-4 4 7 4-13 4 17 4-7h9l4-3 4 6 4-10 4 14 4-7h10l4-2 4 4 4-9 4 13 4-6h8l4-5 4 9 4-15 4 19 4-8h8l4-3 4 5 4-11 4 15 4-6h8L600 16'
+---
+
+<svg
+  class:list={['wave-divider', className]}
+  viewBox="0 0 600 32"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+  {...props}
+>
+  <g class="wave-track">
+    <path d={wavePath}></path>
+    <path d={wavePath} transform="translate(600 0)"></path>
+  </g>
+</svg>
+
+<style>
+  .wave-divider {
+    display: block;
+    width: 100%;
+    height: 2rem;
+    overflow: hidden;
+    color: var(--wave);
+  }
+
+  .wave-track {
+    animation: wave-drift 24s linear infinite;
+    will-change: transform;
+  }
+
+  path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 0.8;
+    opacity: 0.78;
+    vector-effect: non-scaling-stroke;
+  }
+
+  @keyframes wave-drift {
+    to {
+      transform: translateX(-600px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave-track {
+      animation: none;
+    }
+  }
+</style>

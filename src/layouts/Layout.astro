@@ -4,35 +4,19 @@ import BaseHead from '../components/BaseHead.astro'
 import { SOCIAL_LINK } from '../consts'
 
 const { title, description } = Astro.props as HeadProps
-
 const { pathname } = Astro.url
 const isHome = pathname === '/'
 
-const escapeHtml = (value: string) =>
-  value
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;')
-
-const socialLinksMarkup = SOCIAL_LINK.map(
-  ([label, href]) => `
-    <li>
-      <a
-        href="${escapeHtml(href)}"
-        target="_blank"
-        rel="noreferrer"
-        class="transition-colors duration-200"
-        style="color: var(--text-muted)"
-        onmouseover="this.style.color='var(--text)'"
-        onmouseout="this.style.color='var(--text-muted)'"
-      >
-        ${escapeHtml(label)}
-      </a>
-    </li>
-  `
-).join('')
+const navLinks = [
+  { label: 'Writing', href: '/blog' },
+  {
+    label: 'Works ↗',
+    href: 'https://kakekane.com',
+    external: true
+  },
+  { label: 'About', href: '/about' },
+  { label: 'Gallery', href: '/opus-magnum' }
+]
 ---
 
 <html lang="en">
@@ -40,212 +24,67 @@ const socialLinksMarkup = SOCIAL_LINK.map(
     <BaseHead title={title} description={description} />
   </head>
 
-  <body
-    class={`preload-transitions min-w-[20rem] antialiased${isHome ? ' flex items-center' : ''}`}
-  >
-    <div
-      class={`w-full mx-auto px-6 flex-grow flex flex-col max-w-3xl lg:max-w-4xl ${isHome ? 'h-full max-h-[48rem]' : 'min-h-full'}`}
-    >
-      <header class="py-6" style="border-bottom: 1px solid var(--border)">
-        <a href="#skip" class="sr-only focus:not-sr-only">Skip to content</a>
-        <nav
-          class="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 sm:flex-nowrap"
-        >
-          {
-            !isHome && (
-              <a
-                href="/"
-                class="font-serif text-base leading-none font-medium tracking-wide whitespace-nowrap transition-colors duration-200"
-                style="color: var(--text)"
-                onmouseover="this.style.color='var(--accent)'"
-                onmouseout="this.style.color='var(--text)'"
-              >
-                Anas Alqoyyum
-              </a>
-            )
-          }
-          <ul
-            class="flex flex-wrap items-center justify-end gap-x-5 gap-y-2 text-sm tracking-wide sm:gap-6"
-          >
-            <li>
-              <a
-                href="/blog"
-                class="nav-item transition-colors duration-200"
-                style={pathname.startsWith('/blog')
-                  ? 'color: var(--accent); font-weight: 500'
-                  : 'color: var(--text-muted)'}
-                onmouseover="if(!this.style.fontWeight || this.style.fontWeight !== '500') this.style.color='var(--text)'"
-                onmouseout={`if(this.style.fontWeight !== '500') this.style.color='var(--text-muted)'`}
-              >
-                Writing
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://kakekane.com"
-                target="_blank"
-                rel="noreferrer noopener"
-                class="transition-colors duration-200"
-                style="color: var(--text-muted)"
-                onmouseover="this.style.color='var(--text)'"
-                onmouseout="this.style.color='var(--text-muted)'"
-              >
-                Works ↗
-              </a>
-            </li>
-            <li>
-              <a
-                href="/about"
-                class="nav-item transition-colors duration-200"
-                style={pathname.startsWith('/about')
-                  ? 'color: var(--accent); font-weight: 500'
-                  : 'color: var(--text-muted)'}
-                onmouseover="if(!this.style.fontWeight || this.style.fontWeight !== '500') this.style.color='var(--text)'"
-                onmouseout={`if(this.style.fontWeight !== '500') this.style.color='var(--text-muted)'`}
-              >
-                About
-              </a>
-            </li>
-            {
-              isHome && (
-                <li>
-                  <div class="gallery-menu relative">
-                    <button
-                      type="button"
-                      class="gallery-trigger inline-flex items-center gap-2 transition-colors duration-200"
-                      aria-haspopup="menu"
-                    >
-                      Gallery
-                      <span class="gallery-caret text-[0.7em]">▾</span>
-                    </button>
+  <body class="preload-transitions">
+    <a href="#content" class="skip-link">Skip to content</a>
 
-                    <div class="gallery-popover pointer-events-none absolute top-full right-0 z-10 flex min-w-48 justify-end pt-3">
-                      <div
-                        class="gallery-panel rounded-xl border p-2 shadow-lg"
-                        style="border-color: var(--border); background: var(--bg)"
-                      >
-                        <a
-                          href="/opus-magnum"
-                          class="gallery-link block rounded-lg px-3 py-2 transition-colors duration-200"
-                        >
-                          Opus Magnum
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </li>
-              )
+    <div class="site-shell">
+      <header class="site-header">
+        <a href="/" class="site-brand">Anas Alqoyyum</a>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <ul>
+            {
+              navLinks.map(link => {
+                const isActive =
+                  !link.external && pathname.startsWith(link.href)
+
+                return (
+                  <li>
+                    <a
+                      href={link.href}
+                      aria-current={isActive ? 'page' : undefined}
+                      target={link.external ? '_blank' : undefined}
+                      rel={link.external ? 'noreferrer noopener' : undefined}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                )
+              })
             }
           </ul>
         </nav>
       </header>
 
-      <main id="skip" class="flex flex-grow flex-col py-12">
+      <main
+        id="content"
+        class:list={['site-main', isHome && 'site-main--home']}
+      >
         <slot />
       </main>
 
-      <footer
-        class="flex flex-col gap-3 py-6 text-sm sm:flex-row sm:items-center sm:justify-between"
-        style="border-top: 1px solid var(--border)"
-      >
-        <ul
-          class="flex flex-wrap gap-x-5 gap-y-1"
-          set:html={socialLinksMarkup}
-        />
-        <span class="font-mono text-xs" style="color: var(--text-muted)">
-          anasalqoyyum.dev
-        </span>
-      </footer>
+      {
+        !isHome && (
+          <footer class="site-footer">
+            <ul>
+              {SOCIAL_LINK.map(([label, href]) => (
+                <li>
+                  <a href={href} target="_blank" rel="noreferrer noopener">
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <span>anasalqoyyum.dev · Jepara, Indonesia</span>
+          </footer>
+        )
+      }
     </div>
 
     <script is:inline>
-      setTimeout(() => {
-        if (
-          typeof window !== 'undefined' &&
-          document.body.classList.contains('preload-transitions')
-        ) {
-          document.body.classList.remove('preload-transitions')
-        }
-      }, 0)
+      requestAnimationFrame(() => {
+        document.body.classList.remove('preload-transitions')
+      })
     </script>
-
-    <style is:inline>
-      .gallery-menu {
-        --gallery-popover-x: 0rem;
-      }
-
-      .gallery-trigger {
-        white-space: nowrap;
-        color: var(--text-muted);
-        line-height: 1;
-      }
-
-      .nav-item {
-        color: var(--text-muted);
-        line-height: 1;
-      }
-
-      .gallery-trigger:hover,
-      .gallery-menu:focus-within .gallery-trigger {
-        color: var(--text);
-      }
-
-      .gallery-trigger:focus-visible {
-        outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent);
-        outline-offset: 4px;
-        border-radius: 0.5rem;
-      }
-
-      .gallery-caret {
-        transition: transform 160ms ease;
-      }
-
-      .gallery-popover {
-        opacity: 0;
-        transform: translate(var(--gallery-popover-x), -0.2rem);
-        transition:
-          opacity 160ms ease,
-          transform 160ms ease;
-      }
-
-      .gallery-panel {
-        min-width: 12rem;
-        box-shadow: 0 16px 36px -24px rgba(15, 23, 42, 0.28);
-      }
-
-      .gallery-link {
-        color: var(--text-muted);
-      }
-
-      .gallery-link:hover,
-      .gallery-link:focus-visible {
-        color: var(--text);
-        background: color-mix(in srgb, var(--surface) 82%, transparent);
-      }
-
-      .gallery-menu:hover .gallery-popover,
-      .gallery-menu:focus-within .gallery-popover {
-        opacity: 1;
-        transform: translate(var(--gallery-popover-x), 0);
-        pointer-events: auto;
-      }
-
-      .gallery-menu:hover .gallery-caret,
-      .gallery-menu:focus-within .gallery-caret {
-        transform: translateY(1px);
-      }
-
-      @media (min-width: 40rem) {
-        .gallery-menu {
-          --gallery-popover-x: 8rem;
-        }
-      }
-
-      @media (prefers-color-scheme: dark) {
-        .gallery-panel {
-          box-shadow: 0 20px 44px -28px rgba(0, 0, 0, 0.62);
-        }
-      }
-    </style>
   </body>
 </html>

@@ -4,42 +4,72 @@ import type { CollectionEntry } from 'astro:content'
 type Props = CollectionEntry<'blog'>['data'] & { url: string }
 
 const { title, summary, url, publishedAt } = Astro.props
-const d = new Date(publishedAt)
-const shortDate = d.toLocaleDateString('en-US', {
+const publishedDate = new Date(publishedAt).toLocaleDateString('en-US', {
   month: 'short',
   day: 'numeric'
 })
 ---
 
-<article class="group">
-  <a
-    href={url}
-    class="-mx-3 flex items-start gap-5 rounded-sm px-3 py-3.5 transition-colors duration-150 sm:gap-8"
-    onmouseover="this.style.backgroundColor='var(--surface)'"
-    onmouseout="this.style.backgroundColor=''"
-  >
-    <time
-      class="w-[4.5rem] shrink-0 pt-[0.3rem] font-mono text-xs"
-      datetime={publishedAt}
-      style="color: var(--text-muted)"
-    >
-      {shortDate}
-    </time>
-    <div class="min-w-0 flex-1">
-      <h2
-        class="font-serif text-lg leading-snug font-medium transition-colors duration-150 sm:text-xl"
-        style="color: var(--text)"
-        onmouseover="this.style.color='var(--accent)'"
-        onmouseout="this.style.color='var(--text)'"
-      >
-        {title}
-      </h2>
-      <p
-        class="mt-0.5 line-clamp-2 text-sm leading-relaxed"
-        style="color: var(--text-muted)"
-      >
-        {summary}
-      </p>
+<article class="writing-entry">
+  <a href={url}>
+    <div class="entry-line">
+      <h2>{title}</h2>
+      <time datetime={publishedAt}>{publishedDate}</time>
     </div>
+    <p>{summary}</p>
   </a>
 </article>
+
+<style>
+  .writing-entry {
+    border-bottom: 1px dashed var(--border-strong);
+    font-family: var(--font-sans);
+  }
+
+  a {
+    display: block;
+    padding-block: 1.45rem 1.65rem;
+  }
+
+  .entry-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  h2 {
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    font-weight: 500;
+    line-height: 1.5;
+    transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  time {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
+
+  p {
+    max-width: 42rem;
+    margin-top: 0.65rem;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    text-wrap: pretty;
+  }
+
+  a:hover h2 {
+    color: var(--accent-hover);
+  }
+
+  @media (max-width: 34rem) {
+    .entry-line {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }
+</style>
