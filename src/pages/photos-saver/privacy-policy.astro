@@ -15,7 +15,7 @@ const description =
         Privacy Policy
       </h1>
       <p class="mt-3 text-sm leading-6 text-stone-600 dark:text-zinc-400">
-        Last updated: March 17, 2026
+        Last updated: August 2, 2026
       </p>
     </header>
 
@@ -45,8 +45,9 @@ const description =
           class="list-disc space-y-2 pl-5 marker:text-stone-400 dark:marker:text-zinc-600"
         >
           <li>
-            Google account identity information, such as the Google user
-            identifier returned during sign-in.
+            Google account identity information provided during sign-in,
+            including the stable Google user identifier used to associate your
+            authorization with your Photos Saver session.
           </li>
           <li>
             Google OAuth tokens, including an encrypted refresh token stored by
@@ -79,6 +80,11 @@ const description =
           </li>
           <li>Diagnose operational or security issues when needed.</li>
         </ul>
+        <p>
+          The source URL and optional page URL are added to the description of
+          the media item created in your Google Photos library. Photos Saver
+          does not read, list, modify, or delete media already in your library.
+        </p>
       </section>
 
       <section class="space-y-3">
@@ -88,11 +94,23 @@ const description =
           Storage and retention
         </h2>
         <p>
-          Refresh tokens are encrypted at rest in the backend data store.
-          Temporary auth state, exchange codes, and session records are stored
-          only for the limited time required for sign-in and session management.
-          Uploaded image data is handled for the purpose of completing the
-          requested upload.
+          Google refresh tokens are encrypted at rest in the backend data store
+          and retained until they are replaced or you request deletion. The
+          browser extension stores a temporary Photos Saver session token in
+          local extension storage.
+        </p>
+        <p>
+          Temporary authorization state expires within 10 minutes, one-time
+          exchange codes expire within 5 minutes, and backend sessions expire
+          automatically according to the configured session period. Expired
+          temporary records are deleted automatically.
+        </p>
+        <p>
+          Photos Saver does not intentionally retain image payloads, filenames,
+          source URLs, page URLs, or content types in its backend after an
+          upload request finishes. The selected image, filename, and URL-based
+          description are sent to Google Photos and remain there according to
+          your Google Photos settings until you delete them.
         </p>
       </section>
 
@@ -128,9 +146,23 @@ const description =
           Data sharing
         </h2>
         <p>
-          Photos Saver does not sell personal data. Data is only shared with
-          service providers or APIs involved in delivering the requested
-          functionality.
+          Photos Saver does not sell personal data or use Google user data for
+          advertising, credit decisions, or training generalized artificial
+          intelligence or machine-learning models. Data is transferred only to
+          Google Photos at your direction and to service providers needed to
+          operate Photos Saver, or when required for security or by law.
+        </p>
+        <p>
+          Photos Saver's use and transfer of information received from Google
+          APIs adheres to the
+          <a
+            href="https://developers.google.com/terms/api-services-user-data-policy"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="border-b border-stone-300 pb-0.5 text-stone-950 transition-colors duration-150 hover:border-stone-500 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500"
+          >
+            Google API Services User Data Policy
+          </a>, including the Limited Use requirements.
         </p>
       </section>
 
@@ -138,12 +170,35 @@ const description =
         <h2
           class="text-xl font-semibold tracking-tight text-stone-950 dark:text-zinc-50"
         >
-          Your choices
+          Managing and deleting your data
         </h2>
         <p>
-          You may stop using Photos Saver at any time. You may also revoke the
-          app's Google access from your Google account settings, which may
-          disable the service until you authenticate again.
+          You can revoke Photos Saver's access from your
+          <a
+            href="https://myaccount.google.com/connections"
+            target="_blank"
+            rel="noreferrer noopener"
+            class="border-b border-stone-300 pb-0.5 text-stone-950 transition-colors duration-150 hover:border-stone-500 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500"
+          >
+            Google Account connections
+          </a>. Revocation prevents the stored refresh token from obtaining new
+          access tokens but does not itself remove the encrypted record from the
+          Photos Saver backend. You can delete uploaded images and their
+          descriptions directly in Google Photos.
+        </p>
+        <p>
+          To request deletion of your Google user identifier, encrypted refresh
+          token, and active Photos Saver sessions from the Photos Saver backend,
+          email
+          <a
+            href="mailto:doublezero13@gmail.com?subject=Photos%20Saver%20data%20deletion%20request"
+            class="border-b border-stone-300 pb-0.5 text-stone-950 transition-colors duration-150 hover:border-stone-500 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500"
+          >
+            doublezero13@gmail.com
+          </a>
+          from the Google account you used with Photos Saver. After confirming the
+          request, the associated backend records will be deleted. This does not
+          delete media from your Google Photos library.
         </p>
       </section>
 
@@ -154,8 +209,13 @@ const description =
           Contact
         </h2>
         <p>
-          For questions about this policy, use the public contact links listed
-          in the footer of this page.
+          For privacy questions or requests, email
+          <a
+            href="mailto:doublezero13@gmail.com?subject=Photos%20Saver%20privacy"
+            class="border-b border-stone-300 pb-0.5 text-stone-950 transition-colors duration-150 hover:border-stone-500 dark:border-zinc-700 dark:text-zinc-100 dark:hover:border-zinc-500"
+          >
+            doublezero13@gmail.com
+          </a>.
         </p>
       </section>
     </div>
