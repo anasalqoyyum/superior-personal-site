@@ -3,12 +3,13 @@
 
 @theme {
   --font-sans:
-    'IBM Plex Sans', 'Helvetica Neue', Helvetica, system-ui, sans-serif;
+    'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    monospace;
   --font-serif:
-    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
   --font-mono:
-    'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
 }
 
@@ -26,6 +27,9 @@
   --wave: #6e698f;
   --selection-bg: #a39ed0;
   --selection-text: #050505;
+  --size-body: 1rem;
+  --size-label: 0.875rem;
+  --size-meta: 0.75rem;
   color-scheme: dark;
 }
 
@@ -46,8 +50,8 @@
     background: var(--bg);
     color: var(--text);
     font-family: var(--font-mono);
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: var(--size-body);
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -133,7 +137,7 @@
   display: block;
   padding-block: 0.4rem;
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: var(--size-label);
   transition: color 280ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
@@ -176,7 +180,7 @@
   justify-content: space-between;
   gap: 2rem;
   color: var(--text-muted);
-  font-size: 0.72rem;
+  font-size: var(--size-meta);
 }
 
 .site-footer ul {
@@ -214,15 +218,16 @@
   max-width: 42rem;
   margin-top: 1.25rem;
   color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1.8;
+  font-size: var(--size-body);
+  line-height: 1.5;
 }
 
 .terminal-label {
   color: var(--accent);
-  font-size: 0.72rem;
+  font-size: var(--size-label);
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
+  line-height: 1.43;
   text-transform: uppercase;
 }
 
@@ -240,8 +245,8 @@
   max-width: 48rem;
   color: var(--text);
   font-family: var(--font-mono);
-  font-size: 0.9rem;
-  line-height: 1.9;
+  font-size: var(--size-body);
+  line-height: 1.6;
   --tw-prose-body: var(--text);
   --tw-prose-headings: var(--text);
   --tw-prose-lead: var(--text-muted);

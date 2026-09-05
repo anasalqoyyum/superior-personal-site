@@ -131,8 +131,8 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     margin-top: 1.6rem;
     color: var(--text-muted);
     font-family: var(--font-sans);
-    font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-    line-height: 1.85;
+    font-size: var(--size-body);
+    line-height: 1.6;
     text-wrap: pretty;
   }
 
@@ -146,7 +146,7 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     justify-content: space-between;
     gap: 1.5rem;
     color: var(--text-muted);
-    font-size: 0.74rem;
+    font-size: var(--size-meta);
   }
 
   .author {
@@ -186,15 +186,15 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
   .article-cover figcaption {
     margin-top: 0.7rem;
     color: var(--text-muted);
-    font-size: 0.66rem;
+    font-size: var(--size-meta);
     overflow-wrap: anywhere;
   }
 
   .article-body {
     margin-inline: auto;
-    font-family: var(--font-sans);
-    font-size: 1.05rem;
-    line-height: 1.85;
+    font-family: var(--font-mono);
+    font-size: var(--size-body);
+    line-height: 1.6;
   }
 
   .article-body :global(h1),
@@ -214,7 +214,7 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     justify-content: space-between;
     gap: 1.5rem;
     color: var(--text-muted);
-    font-size: 0.72rem;
+    font-size: var(--size-meta);
   }
 
   .article-footer > span {
