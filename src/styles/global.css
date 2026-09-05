@@ -1,13 +1,46 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
+@font-face {
+  font-family: 'TeX Gyre Pagella';
+  src: url('/fonts/tex-gyre-pagella/texgyrepagella-regular.otf')
+    format('opentype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TeX Gyre Pagella';
+  src: url('/fonts/tex-gyre-pagella/texgyrepagella-bold.otf') format('opentype');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TeX Gyre Pagella';
+  src: url('/fonts/tex-gyre-pagella/texgyrepagella-italic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TeX Gyre Pagella';
+  src: url('/fonts/tex-gyre-pagella/texgyrepagella-bolditalic.otf')
+    format('opentype');
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+
 @theme {
   --font-sans:
     'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
-  --font-serif:
-    'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    monospace;
+  --font-serif: 'TeX Gyre Pagella', Georgia, 'Times New Roman', serif;
   --font-mono:
     'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
@@ -30,6 +63,7 @@
   --size-body: 1rem;
   --size-label: 0.875rem;
   --size-meta: 0.75rem;
+  --size-post-body: 1.375rem;
   color-scheme: dark;
 }
 
