@@ -63,7 +63,9 @@
   --size-body: 1rem;
   --size-label: 0.875rem;
   --size-meta: 0.75rem;
-  --size-post-body: 1.375rem;
+  --size-post-deck: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --size-post-body: clamp(1.0625rem, 0.96rem + 0.42vw, 1.25rem);
+  --size-display: clamp(2.125rem, 1.6rem + 2.6vw, 3.75rem);
   color-scheme: dark;
 }
 
@@ -243,7 +245,7 @@
   max-width: 55rem;
   font-size: clamp(2rem, 5.5vw, 4.5rem);
   font-weight: 500;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.03em;
   line-height: 1.03;
   text-wrap: balance;
 }
