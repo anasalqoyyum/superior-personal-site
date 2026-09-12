@@ -190,34 +190,6 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     overflow-wrap: anywhere;
   }
 
-  .article-body {
-    max-width: 46rem;
-    margin-inline: auto;
-    font-family: var(--font-serif);
-    font-size: var(--size-post-body);
-    letter-spacing: 0.004em;
-    line-height: 1.65;
-  }
-
-  .article-body :global(h1),
-  .article-body :global(h2),
-  .article-body :global(h3),
-  .article-body :global(h4) {
-    font-family: var(--font-serif);
-  }
-
-  .article-body :global(h2) {
-    font-size: clamp(1.5rem, 1.2rem + 1.1vw, 1.875rem);
-  }
-
-  .article-body :global(h3) {
-    font-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);
-  }
-
-  .article-body :global(h4) {
-    font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
-  }
-
   .article-footer {
     display: flex;
     max-width: 46rem;
@@ -242,6 +214,8 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
   }
 
   .article-footer a {
+    display: inline-block;
+    padding-block: 0.35rem;
     transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
   }
 

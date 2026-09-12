@@ -116,7 +116,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-12-05',
     year: 2024,
     href: 'https://aniplex.co.jp/bocchi',
-    img: '/assets/bochi.jpg'
+    img: '/assets/bochi.webp'
   },
   {
     title: 'Retro 2024',
@@ -124,7 +124,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-11-20',
     year: 2024,
     href: '/blog/en/closing-up-on-2024',
-    img: '/assets/retro_2024.png'
+    img: '/assets/retro_2024.webp'
   },
   {
     title: 'Software Testing Day',
@@ -132,7 +132,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-09-20',
     year: 2024,
     href: '#',
-    img: '/assets/software_testing_day.png'
+    img: '/assets/software_testing_day.webp'
   },
   {
     title: 'Kaiju No. 8',
@@ -140,7 +140,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-06-01',
     year: 2024,
     href: '#',
-    img: '/assets/kai_title.png'
+    img: '/assets/kai_title.webp'
   },
   {
     title: 'Kaiju No. 8 Episode 1',
@@ -148,7 +148,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-06-08',
     year: 2024,
     href: '#',
-    img: '/assets/kai-1.jpg'
+    img: '/assets/kai-1.webp'
   },
   {
     title: 'Kaiju No. 8 Episode 2',
@@ -156,7 +156,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-06-15',
     year: 2024,
     href: '#',
-    img: '/assets/kai-2.png'
+    img: '/assets/kai-2.webp'
   },
   {
     title: 'Kaiju No. 8 Episode 3',
@@ -164,7 +164,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-06-22',
     year: 2024,
     href: '#',
-    img: '/assets/kai-3.png'
+    img: '/assets/kai-3.webp'
   },
   {
     title: 'Kaiju No. 8 Episode 4',
@@ -172,7 +172,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-06-29',
     year: 2024,
     href: '#',
-    img: '/assets/kai-4.png'
+    img: '/assets/kai-4.webp'
   },
   {
     title: 'Doing Things',
@@ -188,7 +188,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-03-26',
     year: 2024,
     href: '/blog/en/types-of-luck',
-    img: '/assets/luck.jpg'
+    img: '/assets/luck.webp'
   },
   {
     title: 'Types of Luck (ID)',
@@ -196,7 +196,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-03-27',
     year: 2024,
     href: '/blog/id/types-of-luck',
-    img: '/assets/luck_2.png'
+    img: '/assets/luck_2.webp'
   },
   {
     title: 'Rainbow: Chunithm',
@@ -204,7 +204,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-02-17',
     year: 2024,
     href: '#',
-    img: '/assets/rainbow_chunithm.png'
+    img: '/assets/rainbow_chunithm.webp'
   },
   {
     title: 'Maimai',
@@ -212,7 +212,7 @@ export const entries: CompendiumEntry[] = [
     date: '2024-04-24',
     year: 2024,
     href: 'https://maimai.sega.com/',
-    img: '/assets/rainbow_maimai.png',
+    img: '/assets/rainbow_maimai.webp',
     active: true
   }
 ]

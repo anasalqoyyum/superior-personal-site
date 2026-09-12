@@ -25,13 +25,13 @@ const byYear = years.map(y => ({
     <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl">
       Compendium
     </h1>
-    <p class="mt-2 text-center text-slate-500 dark:text-slate-300">
+    <p class="mt-2 text-center text-[var(--text-muted)]">
       {description}
     </p>
     <p class="mt-2 text-center">
       <a
         href="/compendium/list"
-        class="text-sm text-slate-500 underline underline-offset-4 hover:text-slate-700 dark:text-slate-300 dark:hover:text-slate-100"
+        class="text-sm text-[var(--text-muted)] underline underline-offset-4 transition-colors duration-200 hover:text-[var(--accent-hover)]"
         >View as list</a
       >
     </p>
@@ -39,27 +39,27 @@ const byYear = years.map(y => ({
     <nav class="mt-6 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
       <a
         href="/compendium/movie"
-        class="border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
+        class="border-b border-[var(--border-strong)] text-[var(--text-muted)] transition-colors duration-200 hover:border-current hover:text-[var(--accent-hover)]"
         >🍿 Movies</a
       >
       <a
         href="/compendium/tv"
-        class="border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
+        class="border-b border-[var(--border-strong)] text-[var(--text-muted)] transition-colors duration-200 hover:border-current hover:text-[var(--accent-hover)]"
         >📺 TV</a
       >
       <a
         href="/compendium/game"
-        class="border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
+        class="border-b border-[var(--border-strong)] text-[var(--text-muted)] transition-colors duration-200 hover:border-current hover:text-[var(--accent-hover)]"
         >🎮 Games</a
       >
       <a
         href="/compendium/book"
-        class="border-b text-slate-500 transition-colors duration-200 hover:border-current dark:border-slate-700 dark:text-slate-300"
+        class="border-b border-[var(--border-strong)] text-[var(--text-muted)] transition-colors duration-200 hover:border-current hover:text-[var(--accent-hover)]"
         >📚 Books</a
       >
     </nav>
 
-    <hr class="my-6 border-slate-200 dark:border-slate-800" />
+    <hr class="my-6 border-[var(--border)]" />
 
     <div class="grid grid-cols-12 gap-4">
       <aside class="col-span-12 lg:col-span-2">
@@ -67,7 +67,7 @@ const byYear = years.map(y => ({
           class="flex h-full items-start justify-center lg:sticky lg:top-24 lg:justify-start"
         >
           <div
-            class="w-full rounded-md bg-slate-100 px-4 py-4 text-center font-semibold text-slate-600 lg:text-left dark:bg-neutral-800 dark:text-slate-200"
+            class="w-full rounded-md bg-[var(--surface)] px-4 py-4 text-center font-semibold text-[var(--text-muted)] lg:text-left"
           >
             <ul class="space-y-2">
               {

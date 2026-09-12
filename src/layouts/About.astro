@@ -64,6 +64,7 @@ const { title } = Astro.props.content
   }
 
   aside {
+    min-width: 0;
     position: sticky;
     top: 2rem;
   }
@@ -103,6 +104,7 @@ const { title } = Astro.props.content
 
   .about-copy {
     max-width: 46rem;
+    min-width: 0;
   }
 
   .about-copy :global(h2:first-child) {
@@ -111,7 +113,7 @@ const { title } = Astro.props.content
 
   @media (max-width: 46rem) {
     .about-layout {
-      grid-template-columns: 1fr;
+      grid-template-columns: minmax(0, 1fr);
     }
 
     aside {

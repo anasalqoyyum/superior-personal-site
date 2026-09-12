@@ -226,6 +226,8 @@
 }
 
 .site-footer a {
+  display: inline-block;
+  padding-block: 0.35rem;
   transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
 }
 
@@ -413,6 +415,36 @@
 
 .prose :where(strong):not(:where([class~='not-prose'] *)) {
   color: inherit;
+}
+
+/* Article reading typography. Shared by blog posts and the Markdown preview
+   page so both surfaces render the same prose. */
+.prose.article-body {
+  max-width: 46rem;
+  margin-inline: auto;
+  font-family: var(--font-serif);
+  font-size: var(--size-post-body);
+  letter-spacing: 0.004em;
+  line-height: 1.65;
+}
+
+.prose.article-body h1,
+.prose.article-body h2,
+.prose.article-body h3,
+.prose.article-body h4 {
+  font-family: var(--font-serif);
+}
+
+.prose.article-body h2 {
+  font-size: clamp(1.5rem, 1.2rem + 1.1vw, 1.875rem);
+}
+
+.prose.article-body h3 {
+  font-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);
+}
+
+.prose.article-body h4 {
+  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
 }
 
 .rehype-code-title {

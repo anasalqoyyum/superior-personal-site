@@ -1,0 +1,17 @@
+---
+import Layout from './Layout.astro'
+
+interface Frontmatter {
+  title: string
+  description?: string
+}
+
+const { frontmatter } = Astro.props as { frontmatter: Frontmatter }
+const { title, description = 'Markdown rendering reference' } = frontmatter
+---
+
+<Layout title={title} description={description}>
+  <section class="prose article-body">
+    <slot />
+  </section>
+</Layout>

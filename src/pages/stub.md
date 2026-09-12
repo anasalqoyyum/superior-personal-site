@@ -1,6 +1,7 @@
 ---
-layout: ../layouts/About.astro
+layout: ../layouts/MarkdownPreview.astro
 title: Markdown Test
+description: A reference page for checking how Markdown elements render.
 ---
 
 # My Comprehensive Markdown Guide
