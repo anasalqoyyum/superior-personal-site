@@ -111,13 +111,13 @@ const formatMetric = (value: number | null, suffix = '') =>
 
   .gallery-note span {
     color: var(--accent);
-    font-size: 0.65rem;
+    font-size: var(--size-meta);
   }
 
   .gallery-note p {
     color: var(--text-muted);
-    font-size: 0.72rem;
-    line-height: 1.75;
+    font-size: var(--size-label);
+    line-height: 1.7;
   }
 
   .solution-ledger {
@@ -165,7 +165,7 @@ const formatMetric = (value: number | null, suffix = '') =>
     padding: 0.45rem 0.6rem;
     background: var(--bg);
     color: var(--accent);
-    font-size: 0.55rem;
+    font-size: var(--size-meta);
     opacity: 0;
     transform: translateY(100%);
     transition:
@@ -196,7 +196,7 @@ const formatMetric = (value: number | null, suffix = '') =>
   }
 
   h2 {
-    font-size: 0.82rem;
+    font-size: var(--size-body);
     font-weight: 500;
     line-height: 1.5;
     transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
@@ -204,7 +204,7 @@ const formatMetric = (value: number | null, suffix = '') =>
 
   time {
     color: var(--text-muted);
-    font-size: 0.56rem;
+    font-size: var(--size-meta);
     white-space: nowrap;
   }
 
@@ -223,14 +223,16 @@ const formatMetric = (value: number | null, suffix = '') =>
 
   dt {
     color: var(--text-muted);
-    font-size: 0.53rem;
+    font-size: var(--size-meta);
+    letter-spacing: 0.05em;
     text-transform: uppercase;
   }
 
   dd {
     margin-top: 0.25rem;
     color: var(--text);
-    font-size: 0.68rem;
+    font-size: var(--size-label);
+    font-variant-numeric: tabular-nums;
   }
 
   .solution-entry a:hover h2 {

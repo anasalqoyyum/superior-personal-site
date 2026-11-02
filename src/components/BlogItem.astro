@@ -39,9 +39,10 @@ const publishedDate = new Date(publishedAt).toLocaleDateString('en-US', {
   }
 
   h2 {
-    font-size: var(--size-body);
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.35;
     transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
   }
 
@@ -54,10 +55,11 @@ const publishedDate = new Date(publishedAt).toLocaleDateString('en-US', {
 
   p {
     max-width: 42rem;
-    margin-top: 0.65rem;
+    margin-top: 0.5rem;
     color: var(--text-muted);
-    font-size: var(--size-label);
-    line-height: 1.5;
+    font-family: var(--font-serif);
+    font-size: var(--size-body);
+    line-height: 1.55;
     text-wrap: pretty;
   }
 

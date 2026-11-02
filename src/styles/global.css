@@ -1,46 +1,11 @@
 @import 'tailwindcss';
 @plugin "@tailwindcss/typography";
 
-@font-face {
-  font-family: 'TeX Gyre Pagella';
-  src: url('/fonts/tex-gyre-pagella/texgyrepagella-regular.otf')
-    format('opentype');
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TeX Gyre Pagella';
-  src: url('/fonts/tex-gyre-pagella/texgyrepagella-bold.otf') format('opentype');
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TeX Gyre Pagella';
-  src: url('/fonts/tex-gyre-pagella/texgyrepagella-italic.otf')
-    format('opentype');
-  font-style: italic;
-  font-weight: 400;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'TeX Gyre Pagella';
-  src: url('/fonts/tex-gyre-pagella/texgyrepagella-bolditalic.otf')
-    format('opentype');
-  font-style: italic;
-  font-weight: 700;
-  font-display: swap;
-}
-
 @theme {
   --font-sans:
     'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
-  --font-serif: 'TeX Gyre Pagella', Georgia, 'Times New Roman', serif;
+  --font-serif: 'Literata Variable', Georgia, 'Times New Roman', serif;
   --font-mono:
     'Commit Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     monospace;
@@ -50,6 +15,7 @@
   --bg: #050505;
   --surface: #0b0a10;
   --text: #f0eee8;
+  --text-prose: #d8d4cc;
   --text-muted: #91877b;
   --camellia: #1f1e33;
   --accent: #a39ed0;
@@ -64,8 +30,8 @@
   --size-label: 0.875rem;
   --size-meta: 0.75rem;
   --size-post-deck: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
-  --size-post-body: clamp(1.0625rem, 0.96rem + 0.42vw, 1.25rem);
-  --size-display: clamp(2.125rem, 1.6rem + 2.6vw, 3.75rem);
+  --size-post-body: clamp(1.0625rem, 1rem + 0.25vw, 1.125rem);
+  --size-display: clamp(2rem, 1.5rem + 2vw, 3rem);
   color-scheme: dark;
 }
 
@@ -137,7 +103,7 @@
   padding: 0.55rem 0.7rem;
   background: var(--text);
   color: var(--bg);
-  font-size: 0.7rem;
+  font-size: var(--size-label);
   transform: translateY(-180%);
 }
 
@@ -245,19 +211,21 @@
 
 .terminal-heading h1 {
   max-width: 55rem;
-  font-size: clamp(2rem, 5.5vw, 4.5rem);
+  font-size: var(--size-display);
   font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1.03;
   text-wrap: balance;
 }
 
-.terminal-heading p {
+.terminal-heading h1 + p {
   max-width: 42rem;
   margin-top: 1.25rem;
   color: var(--text-muted);
-  font-size: var(--size-body);
-  line-height: 1.5;
+  font-family: var(--font-serif);
+  font-size: var(--size-post-deck);
+  line-height: 1.45;
+  text-wrap: pretty;
 }
 
 .terminal-label {
@@ -280,12 +248,13 @@
 }
 
 .prose {
-  max-width: 48rem;
-  color: var(--text);
-  font-family: var(--font-mono);
-  font-size: var(--size-body);
-  line-height: 1.6;
-  --tw-prose-body: var(--text);
+  max-width: 38rem;
+  color: var(--text-prose);
+  font-family: var(--font-serif);
+  font-size: var(--size-post-body);
+  letter-spacing: 0.004em;
+  line-height: 1.7;
+  --tw-prose-body: var(--text-prose);
   --tw-prose-headings: var(--text);
   --tw-prose-lead: var(--text-muted);
   --tw-prose-links: var(--accent);
@@ -305,9 +274,9 @@
 .prose h3,
 .prose h4 {
   color: var(--text);
-  font-family: var(--font-mono);
+  font-family: var(--font-serif);
   font-weight: 500;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.015em;
   line-height: 1.2;
   scroll-margin-top: 2rem;
   text-wrap: balance;
@@ -315,22 +284,20 @@
 
 .prose h1 {
   margin-bottom: 1.4em;
-  font-size: clamp(2.3rem, 6vw, 4rem);
+  font-size: var(--size-display);
 }
 
 .prose h2 {
   margin-top: 2.5em;
-  font-size: clamp(1.2rem, 3vw, 1.65rem);
-}
-
-.prose h2::before {
-  margin-right: 0.45rem;
-  color: var(--accent);
-  content: '>';
+  font-size: clamp(1.5rem, 1.2rem + 1.1vw, 1.875rem);
 }
 
 .prose h3 {
-  font-size: 1.1rem;
+  font-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);
+}
+
+.prose h4 {
+  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
 }
 
 .prose p {
@@ -417,34 +384,8 @@
   color: inherit;
 }
 
-/* Article reading typography. Shared by blog posts and the Markdown preview
-   page so both surfaces render the same prose. */
 .prose.article-body {
-  max-width: 46rem;
   margin-inline: auto;
-  font-family: var(--font-serif);
-  font-size: var(--size-post-body);
-  letter-spacing: 0.004em;
-  line-height: 1.65;
-}
-
-.prose.article-body h1,
-.prose.article-body h2,
-.prose.article-body h3,
-.prose.article-body h4 {
-  font-family: var(--font-serif);
-}
-
-.prose.article-body h2 {
-  font-size: clamp(1.5rem, 1.2rem + 1.1vw, 1.875rem);
-}
-
-.prose.article-body h3 {
-  font-size: clamp(1.25rem, 1.1rem + 0.55vw, 1.5rem);
-}
-
-.prose.article-body h4 {
-  font-size: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
 }
 
 .rehype-code-title {
@@ -454,7 +395,7 @@
   background: #0f131b;
   color: #626a73;
   font-family: var(--font-mono);
-  font-size: 0.68rem;
+  font-size: var(--size-meta);
 }
 
 .rehype-code-title + pre {
@@ -540,10 +481,6 @@
     min-width: 100%;
     justify-content: space-between;
     gap: 1.2rem;
-  }
-
-  .site-nav a {
-    font-size: 0.74rem;
   }
 
   .site-footer {
