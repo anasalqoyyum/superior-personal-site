@@ -8,12 +8,16 @@ import { SOCIAL_LINK } from '../consts'
 import Layout from '../layouts/Layout.astro'
 
 const title = 'Anas Alqoyyum — Software Engineer'
-const posts = (await getCollection('blog'))
+const pinnedPostId = 'en/words-of-encouragement'
+const englishPosts = (await getCollection('blog'))
   .filter(post => !post.data.hidden && post.id.includes('en/'))
   .sort(
     (a, b) => Date.parse(b.data.publishedAt) - Date.parse(a.data.publishedAt)
   )
-  .slice(0, 4)
+const posts = [
+  ...englishPosts.filter(post => post.id === pinnedPostId),
+  ...englishPosts.filter(post => post.id !== pinnedPostId)
+].slice(0, 4)
 
 const projects = [
   {
@@ -440,9 +444,10 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
 
   .intro-section p {
     margin-top: 1.25rem;
-    color: var(--text);
-    font-size: var(--size-body);
-    line-height: 1.5;
+    color: var(--text-prose);
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: 1.6;
   }
 
   .link-section ul {
@@ -511,9 +516,10 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
   }
 
   .entry-heading h3 {
-    font-size: var(--size-body);
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
     font-weight: 500;
-    line-height: 1.5;
+    line-height: 1.35;
     transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
   }
 
@@ -526,10 +532,11 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
 
   .entry-list p {
     max-width: 30rem;
-    margin-top: 0.7rem;
+    margin-top: 0.5rem;
     color: var(--text-muted);
-    font-size: var(--size-label);
-    line-height: 1.5;
+    font-family: var(--font-serif);
+    font-size: var(--size-body);
+    line-height: 1.55;
   }
 
   .entry-list a:hover h3 {
