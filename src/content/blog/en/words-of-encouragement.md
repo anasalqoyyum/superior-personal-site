@@ -6,6 +6,8 @@ thumbnail: '/assets/words-of-encouragement-cover.webp'
 thumbnailAlt: 'The words "keep going." in large serif type on a dark background'
 thumbnailSource: 'Personal asset'
 lang: EN
+langInfo: EN | ID
+isMultiLang: true
 ---
 
 why should you keep going?... honestly i dont know! i can only speak for myself. but here is what i do know: nobody ever got very far by giving up. maybe you just forgot to fill your tank. no worries, here is a little fuel to get you moving again.

@@ -53,7 +53,20 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     item-type="https://schema.org/BlogPosting"
   >
     <header class="article-header">
-      <p class="terminal-label">{lang} / {readingTime}</p>
+      <div class="article-kicker">
+        <p class="terminal-label">{lang} / {readingTime}</p>
+        {
+          isMultiLang && (
+            <a
+              class="language-switch"
+              href={alternateUrl}
+              hreflang={lang === 'ID' ? 'en' : 'id'}
+            >
+              {alternateLanguage}
+            </a>
+          )
+        }
+      </div>
       <h1 item-prop="name headline">{title}</h1>
       <p class="article-summary">{summary}</p>
 
@@ -99,7 +112,6 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     <footer class="article-footer">
       <span>&gt; end of note</span>
       <div>
-        {isMultiLang && <a href={alternateUrl}>{alternateLanguage}</a>}
         <a href={githubFileUrl}>Edit on GitHub ↗</a>
       </div>
     </footer>
@@ -114,6 +126,24 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
   .article-header {
     max-width: 38rem;
     margin-inline: auto;
+  }
+
+  .article-kicker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .language-switch {
+    padding-block: 0.35rem;
+    color: var(--text-muted);
+    font-size: var(--size-label);
+    transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .language-switch:hover {
+    color: var(--accent-hover);
   }
 
   .article-header h1 {
