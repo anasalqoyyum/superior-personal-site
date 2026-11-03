@@ -48,17 +48,16 @@ const byYear = years.map(y => ({
     </p>
     <p class="mt-2 text-center text-sm text-[var(--text-muted)]">
       <span aria-hidden="true">{categoryEmoji[category]}</span>
-      <span>
-        {toWordCase(category)}
-      </span>
+      <span>{toWordCase(category)}</span>
     </p>
 
     <p class="mt-2 text-center">
       <a
         href="/compendium"
         class="text-sm text-[var(--text-muted)] underline underline-offset-4 transition-colors duration-200 hover:text-[var(--accent-hover)]"
-        >Back to all</a
       >
+        Back to all
+      </a>
     </p>
 
     <hr class="my-6 border-[var(--border)]" />

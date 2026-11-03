@@ -10,16 +10,20 @@ This repository is an Astro site managed with pnpm. App routes live in `src/page
 - `pnpm dev`: start the local Astro dev server.
 - `pnpm build`: create the production site in `dist/`.
 - `pnpm preview`: preview the built site locally.
-- `pnpm format`: run Prettier across the repository.
-- `pnpm astro check`: run Astro and TypeScript checks for routes, props, and content collections.
+- `pnpm format`: apply oxfmt formatting across supported files.
+- `pnpm format:check`: check formatting without writing files.
+- `pnpm lint`: run Oxlint correctness checks.
+- `pnpm lint:fix`: apply safe Oxlint fixes.
+- `pnpm check`: run Oxlint, Astro diagnostics, and TypeScript checks.
+- `pnpm test`: run the Node.js unit tests.
 
 ## Coding Style & Naming Conventions
 
-Use Prettier as the source of truth. The repo uses 2-space indentation, no semicolons, single quotes, trailing commas disabled, and `printWidth: 80`. Name Astro components in PascalCase, such as `BaseHead.astro`; utility files and route slugs should stay lowercase or kebab-case. Keep blog filenames descriptive and kebab-case, for example `making-frontend-testing-effective.md`.
+Use `.oxfmtrc.json` as the formatting source of truth and `.oxlintrc.json` for lint rules. Name Astro components in PascalCase, such as `BaseHead.astro`; utility files and route slugs should stay lowercase or kebab-case. Keep blog filenames descriptive and kebab-case, for example `making-frontend-testing-effective.md`.
 
 ## Testing Guidelines
 
-There is no dedicated automated test suite yet. Before opening a PR, run `pnpm astro check` and `pnpm format`, then smoke-test the affected pages with `pnpm dev`. For content changes, verify the generated route, metadata, and any referenced images or links.
+Before opening a PR, run `pnpm check`, `pnpm test`, `pnpm format:check`, and `pnpm build`, then smoke-test the affected pages with `pnpm dev`. Oxlint checks Astro frontmatter and script blocks but does not lint templates; keep Astro diagnostics in the check workflow. For content changes, verify the generated route, metadata, and any referenced images or links.
 
 ## Commit & Pull Request Guidelines
 

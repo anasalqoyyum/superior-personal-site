@@ -49,34 +49,30 @@ const listedCountsByYear = new Map(
 
   <PostList>
     <div class="writing-years">
-      {
-        years.map(year => (
-          <section
-            class="year-group"
-            aria-labelledby={`year-${year}`}
-            data-post-year
-            hidden={listedCountsByYear.get(year) === 0}
-          >
-            <div class="year-rail">
-              <h2 id={`year-${year}`}>{year}</h2>
-              <span data-post-count>
-                {listedCountsByYear.get(year)} entries
-              </span>
-            </div>
-            <ol>
-              {postsByYear[year].map(post => (
-                <li
-                  data-post
-                  data-list-after={post.data.listAfter}
-                  hidden={!isPostListed({ ...post.data, now })}
-                >
-                  <BlogItem url={`/blog/${post.id}`} {...post.data} />
-                </li>
-              ))}
-            </ol>
-          </section>
-        ))
-      }
+      {years.map(year => (
+        <section
+          class="year-group"
+          aria-labelledby={`year-${year}`}
+          data-post-year
+          hidden={listedCountsByYear.get(year) === 0}
+        >
+          <div class="year-rail">
+            <h2 id={`year-${year}`}>{year}</h2>
+            <span data-post-count>{listedCountsByYear.get(year)} entries</span>
+          </div>
+          <ol>
+            {postsByYear[year].map(post => (
+              <li
+                data-post
+                data-list-after={post.data.listAfter}
+                hidden={!isPostListed({ ...post.data, now })}
+              >
+                <BlogItem url={`/blog/${post.id}`} {...post.data} />
+              </li>
+            ))}
+          </ol>
+        </section>
+      ))}
     </div>
   </PostList>
 </Layout>

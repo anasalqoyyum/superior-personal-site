@@ -25,71 +25,66 @@ const grouped = years.map(y => ({
     <h1 class="text-center text-4xl font-extrabold tracking-tight sm:text-5xl">
       {title}
     </h1>
-    <p class="mt-2 text-center text-[var(--text-muted)]">
-      {description}
-    </p>
+    <p class="mt-2 text-center text-[var(--text-muted)]">{description}</p>
     <p class="mt-2 text-center">
       <a
         href="/compendium"
         class="text-sm text-[var(--text-muted)] underline underline-offset-4 transition-colors duration-200 hover:text-[var(--accent-hover)]"
-        >View as grid</a
       >
+        View as grid
+      </a>
     </p>
 
-    {
-      active.length > 0 && (
-        <div class="mt-8">
-          <h2 class="text-2xl font-bold">Actively Playing</h2>
-          <ul class="mt-4 divide-y divide-dashed divide-[var(--border)]">
-            {active.map(e => (
-              <li class="flex items-center justify-between py-3">
-                <div class="min-w-0 truncate">
-                  <span class="mr-2" aria-hidden="true">
-                    {categoryEmoji[e.categories]}
-                  </span>
-                  <a
-                    href={e.href}
-                    class="underline underline-offset-4 transition-colors duration-200 hover:text-[var(--accent-hover)]"
-                  >
-                    {e.title}
-                  </a>
-                </div>
-                <time class="font-mono text-sm text-[var(--text-muted)]">
-                  {e.date}
-                </time>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )
-    }
+    {active.length > 0 && (
+      <div class="mt-8">
+        <h2 class="text-2xl font-bold">Actively Playing</h2>
+        <ul class="mt-4 divide-y divide-dashed divide-[var(--border)]">
+          {active.map(e => (
+            <li class="flex items-center justify-between py-3">
+              <div class="min-w-0 truncate">
+                <span class="mr-2" aria-hidden="true">
+                  {categoryEmoji[e.categories]}
+                </span>
+                <a
+                  href={e.href}
+                  class="underline underline-offset-4 transition-colors duration-200 hover:text-[var(--accent-hover)]"
+                >
+                  {e.title}
+                </a>
+              </div>
+              <time class="font-mono text-sm text-[var(--text-muted)]">
+                {e.date}
+              </time>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
 
-    {
-      grouped.map(group => (
-        <div class="mt-8">
-          <h2 class="text-2xl font-bold">{group.year}</h2>
-          <ul class="mt-4 divide-y divide-dashed divide-[var(--border)]">
-            {group.items.map(e => (
-              <li class="flex items-center justify-between py-3">
-                <div class="min-w-0 truncate">
-                  <span class="mr-2" aria-hidden="true">
-                    {categoryEmoji[e.categories]}
-                  </span>
-                  <a
-                    href={e.href}
-                    class="underline underline-offset-4 transition-colors duration-200 hover:text-[var(--accent-hover)]"
-                  >
-                    {e.title}
-                  </a>
-                </div>
-                <time class="font-mono text-sm text-[var(--text-muted)]">
-                  {e.date}
-                </time>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))
-    }
+    {grouped.map(group => (
+      <div class="mt-8">
+        <h2 class="text-2xl font-bold">{group.year}</h2>
+        <ul class="mt-4 divide-y divide-dashed divide-[var(--border)]">
+          {group.items.map(e => (
+            <li class="flex items-center justify-between py-3">
+              <div class="min-w-0 truncate">
+                <span class="mr-2" aria-hidden="true">
+                  {categoryEmoji[e.categories]}
+                </span>
+                <a
+                  href={e.href}
+                  class="underline underline-offset-4 transition-colors duration-200 hover:text-[var(--accent-hover)]"
+                >
+                  {e.title}
+                </a>
+              </div>
+              <time class="font-mono text-sm text-[var(--text-muted)]">
+                {e.date}
+              </time>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
   </section>
 </Layout>

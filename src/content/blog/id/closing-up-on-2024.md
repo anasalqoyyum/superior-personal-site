@@ -2,7 +2,7 @@
 title: 'Menutup tahun 2024'
 summary: Tahun ini agak tidak jelas, tapi setidaknya dapat dilewati
 publishedAt: '2024-12-27'
-thumbnail: '/assets/2024.webp'
+thumbnail: '/assets/retro_2024.webp'
 thumbnailAlt: '2024 dicoret, and 2025 lebih bahagia'
 thumbnailSource: 'gambar sendiri :)'
 lang: ID
