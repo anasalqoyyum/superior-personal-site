@@ -6,14 +6,18 @@ import Layout from '../layouts/Layout.astro'
 <Layout title="Not Found">
   <section class="not-found">
     <p class="terminal-label">Error / 404-ish</p>
-    <div class="error-code" aria-hidden="true">418</div>
+    <div class="error-code" aria-hidden="true">
+      418
+    </div>
     <h1>I’m a teapot.</h1>
     <p class="error-copy">
       The requested page wasn’t found. The server remains emotionally committed
       to the more interesting status code.
     </p>
     <WaveDivider class="error-wave" />
-    <a href="/"><span aria-hidden="true">&gt;</span> Return home</a>
+    <a href="/">
+      <span aria-hidden="true">&gt;</span> Return home
+    </a>
   </section>
 </Layout>
 

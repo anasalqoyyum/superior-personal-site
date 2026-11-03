@@ -54,18 +54,18 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
   >
     <header class="article-header">
       <div class="article-kicker">
-        <p class="terminal-label">{lang} / {readingTime}</p>
-        {
-          isMultiLang && (
-            <a
-              class="language-switch"
-              href={alternateUrl}
-              hreflang={lang === 'ID' ? 'en' : 'id'}
-            >
-              {alternateLanguage}
-            </a>
-          )
-        }
+        <p class="terminal-label">
+          {lang} / {readingTime}
+        </p>
+        {isMultiLang && (
+          <a
+            class="language-switch"
+            href={alternateUrl}
+            hreflang={lang === 'ID' ? 'en' : 'id'}
+          >
+            {alternateLanguage}
+          </a>
+        )}
       </div>
       <h1 item-prop="name headline">{title}</h1>
       <p class="article-summary">{summary}</p>
@@ -96,16 +96,14 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
 
     <WaveDivider class="article-wave" />
 
-    {
-      thumbnail && (
-        <figure class="article-cover">
-          <img src={thumbnail} alt={thumbnailAlt} loading="eager" />
-          {thumbnailSource && <figcaption>{thumbnailSource}</figcaption>}
-        </figure>
-      )
-    }
+    {thumbnail && (
+      <figure class="article-cover">
+        <img src={thumbnail} alt={thumbnailAlt} loading="eager" />
+        {thumbnailSource && <figcaption>{thumbnailSource}</figcaption>}
+      </figure>
+    )}
 
-    <section class="prose article-body" item-prop="articleBody">
+    <section class="article-body prose" item-prop="articleBody">
       <Content />
     </section>
 

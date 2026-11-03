@@ -1,5 +1,5 @@
 @import 'tailwindcss';
-@plugin "@tailwindcss/typography";
+@plugin '@tailwindcss/typography';
 
 @theme {
   --font-sans:
@@ -327,6 +327,7 @@
   font-family: var(--font-mono);
   font-size: 0.86em;
   font-weight: 400;
+  overflow-wrap: anywhere;
 }
 
 .prose :not(pre) > code::before,
@@ -359,6 +360,12 @@
 .prose pre code::before,
 .prose pre code::after {
   content: none;
+}
+
+.prose table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .prose blockquote {

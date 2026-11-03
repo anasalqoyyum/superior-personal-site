@@ -21,7 +21,7 @@ Options:
   --force            Overwrite existing .webp files.`)
 }
 
-const parseArgs = (args) => {
+const parseArgs = args => {
   for (let index = 0; index < args.length; index += 1) {
     const arg = args[index]
 
@@ -53,7 +53,7 @@ const parseArgs = (args) => {
   return options
 }
 
-const collectImageFiles = (inputPath) => {
+const collectImageFiles = inputPath => {
   const stats = statSync(inputPath, { throwIfNoEntry: false })
 
   if (!stats) {
@@ -87,12 +87,16 @@ const convertToWebp = async (inputPath, quality, force) => {
   const outputPath = inputPath.replace(/\.(png|jpe?g)$/i, '.webp')
 
   if (existsSync(outputPath) && !force) {
-    console.log(`Skipping: ${relative(repoRoot, inputPath)} (.webp already exists)`)
+    console.log(
+      `Skipping: ${relative(repoRoot, inputPath)} (.webp already exists)`
+    )
     return
   }
 
   await sharp(inputPath).webp({ quality }).toFile(outputPath)
-  console.log(`Converted: ${relative(repoRoot, inputPath)} -> ${relative(repoRoot, outputPath)}`)
+  console.log(
+    `Converted: ${relative(repoRoot, inputPath)} -> ${relative(repoRoot, outputPath)}`
+  )
 }
 
 const main = async () => {

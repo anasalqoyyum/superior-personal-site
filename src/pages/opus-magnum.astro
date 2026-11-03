@@ -32,66 +32,64 @@ const formatMetric = (value: number | null, suffix = '') =>
   </div>
 
   <section class="solution-ledger" aria-label="Opus Magnum solutions">
-    {
-      opusMagnumSolutions.map((solution, index) => (
-        <article class="solution-entry">
-          <a
-            href={solution.src}
-            target="_blank"
-            rel="noreferrer noopener"
-            aria-label={`Open ${solution.puzzleName} recording in a new tab`}
-          >
-            <div class="media-frame">
-              {solution.mimeType === 'video/webm' ? (
-                <video
-                  autoplay
-                  muted
-                  loop
-                  playsinline
-                  preload={index < 4 ? 'auto' : 'metadata'}
-                >
-                  <source src={solution.src} type="video/webm" />
-                </video>
-              ) : (
-                <img
-                  src={solution.src}
-                  alt={`Opus Magnum solution for ${solution.puzzleName}`}
-                  loading={index < 4 ? 'eager' : 'lazy'}
-                  decoding="async"
-                />
+    {opusMagnumSolutions.map((solution, index) => (
+      <article class="solution-entry">
+        <a
+          href={solution.src}
+          target="_blank"
+          rel="noreferrer noopener"
+          aria-label={`Open ${solution.puzzleName} recording in a new tab`}
+        >
+          <div class="media-frame">
+            {solution.mimeType === 'video/webm' ? (
+              <video
+                autoplay
+                muted
+                loop
+                playsinline
+                preload={index < 4 ? 'auto' : 'metadata'}
+              >
+                <source src={solution.src} type="video/webm" />
+              </video>
+            ) : (
+              <img
+                src={solution.src}
+                alt={`Opus Magnum solution for ${solution.puzzleName}`}
+                loading={index < 4 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            )}
+            <span>open recording ↗</span>
+          </div>
+
+          <header>
+            <div>
+              <h2>{solution.puzzleName}</h2>
+              {solution.capturedAtLabel && (
+                <time datetime={solution.capturedAtRaw ?? undefined}>
+                  {solution.capturedAtLabel}
+                </time>
               )}
-              <span>open recording ↗</span>
             </div>
 
-            <header>
+            <dl>
               <div>
-                <h2>{solution.puzzleName}</h2>
-                {solution.capturedAtLabel && (
-                  <time datetime={solution.capturedAtRaw ?? undefined}>
-                    {solution.capturedAtLabel}
-                  </time>
-                )}
+                <dt>Cost</dt>
+                <dd>{formatMetric(solution.cost, 'G')}</dd>
               </div>
-
-              <dl>
-                <div>
-                  <dt>Cost</dt>
-                  <dd>{formatMetric(solution.cost, 'G')}</dd>
-                </div>
-                <div>
-                  <dt>Cycles</dt>
-                  <dd>{formatMetric(solution.cycles)}</dd>
-                </div>
-                <div>
-                  <dt>Area</dt>
-                  <dd>{formatMetric(solution.area)}</dd>
-                </div>
-              </dl>
-            </header>
-          </a>
-        </article>
-      ))
-    }
+              <div>
+                <dt>Cycles</dt>
+                <dd>{formatMetric(solution.cycles)}</dd>
+              </div>
+              <div>
+                <dt>Area</dt>
+                <dd>{formatMetric(solution.area)}</dd>
+              </div>
+            </dl>
+          </header>
+        </a>
+      </article>
+    ))}
   </section>
 </Layout>
 
