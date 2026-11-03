@@ -1,9 +1,11 @@
 ---
 import { getCollection } from 'astro:content'
 import BlogItem from '../../components/BlogItem.astro'
+import PostList from '../../components/PostList.astro'
 import WaveDivider from '../../components/WaveDivider.astro'
 import { SITE_TITLE } from '../../consts'
 import Layout from '../../layouts/Layout.astro'
+import { isPostListed } from '../../utils/post-visibility'
 
 const posts = (await getCollection('blog'))
   .filter(post => !post.data.hidden && post.id.includes('en/'))
@@ -24,6 +26,13 @@ const postsByYear = posts.reduce(
 const years = Object.keys(postsByYear)
   .map(Number)
   .sort((a, b) => b - a)
+const now = Date.now()
+const listedCountsByYear = new Map(
+  years.map(year => [
+    year,
+    postsByYear[year].filter(post => isPostListed({ ...post.data, now })).length
+  ])
+)
 ---
 
 <Layout title={`Writing — ${SITE_TITLE}`}>
@@ -38,25 +47,38 @@ const years = Object.keys(postsByYear)
 
   <WaveDivider class="writing-wave" />
 
-  <div class="writing-years">
-    {
-      years.map(year => (
-        <section class="year-group" aria-labelledby={`year-${year}`}>
-          <div class="year-rail">
-            <h2 id={`year-${year}`}>{year}</h2>
-            <span>{postsByYear[year].length} entries</span>
-          </div>
-          <ol>
-            {postsByYear[year].map(post => (
-              <li>
-                <BlogItem url={`/blog/${post.id}`} {...post.data} />
-              </li>
-            ))}
-          </ol>
-        </section>
-      ))
-    }
-  </div>
+  <PostList>
+    <div class="writing-years">
+      {
+        years.map(year => (
+          <section
+            class="year-group"
+            aria-labelledby={`year-${year}`}
+            data-post-year
+            hidden={listedCountsByYear.get(year) === 0}
+          >
+            <div class="year-rail">
+              <h2 id={`year-${year}`}>{year}</h2>
+              <span data-post-count>
+                {listedCountsByYear.get(year)} entries
+              </span>
+            </div>
+            <ol>
+              {postsByYear[year].map(post => (
+                <li
+                  data-post
+                  data-list-after={post.data.listAfter}
+                  hidden={!isPostListed({ ...post.data, now })}
+                >
+                  <BlogItem url={`/blog/${post.id}`} {...post.data} />
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))
+      }
+    </div>
+  </PostList>
 </Layout>
 
 <style>

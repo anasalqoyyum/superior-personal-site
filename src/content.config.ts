@@ -12,7 +12,8 @@ export const PostFrontMatterSchema = z.object({
   lang: z.string().optional(),
   langInfo: z.string().optional(),
   isMultiLang: z.boolean().optional(),
-  hidden: z.boolean().optional()
+  hidden: z.boolean().optional(),
+  listAfter: z.iso.datetime({ offset: true }).optional()
 })
 
 const blog = defineCollection({

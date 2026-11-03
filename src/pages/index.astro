@@ -4,8 +4,10 @@ import { getCollection } from 'astro:content'
 import avatar from '../assets/images/avatar.png'
 import photo from '../assets/images/photo.jpg'
 import WaveDivider from '../components/WaveDivider.astro'
+import PostList from '../components/PostList.astro'
 import { SOCIAL_LINK } from '../consts'
 import Layout from '../layouts/Layout.astro'
+import { isPostListed } from '../utils/post-visibility'
 
 const title = 'Anas Alqoyyum — Software Engineer'
 const pinnedPostId = 'en/words-of-encouragement'
@@ -17,7 +19,14 @@ const englishPosts = (await getCollection('blog'))
 const posts = [
   ...englishPosts.filter(post => post.id === pinnedPostId),
   ...englishPosts.filter(post => post.id !== pinnedPostId)
-].slice(0, 4)
+]
+const now = Date.now()
+const listedPostIds = new Set(
+  posts
+    .filter(post => isPostListed({ ...post.data, now }))
+    .slice(0, 4)
+    .map(post => post.id)
+)
 
 const projects = [
   {
@@ -199,23 +208,29 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
     <section class="home-right">
       <section aria-labelledby="recent-heading">
         <h2 id="recent-heading" class="terminal-label">Recent writing</h2>
-        <ol class="entry-list">
-          {
-            posts.map(post => (
-              <li>
-                <a href={`/blog/${post.id}`}>
-                  <div class="entry-heading">
-                    <h3>{post.data.title}</h3>
-                    <time datetime={post.data.publishedAt}>
-                      {post.data.publishedAt.slice(0, 10)}
-                    </time>
-                  </div>
-                  <p>{post.data.summary}</p>
-                </a>
-              </li>
-            ))
-          }
-        </ol>
+        <PostList limit={4}>
+          <ol class="entry-list">
+            {
+              posts.map(post => (
+                <li
+                  data-post
+                  data-list-after={post.data.listAfter}
+                  hidden={!listedPostIds.has(post.id)}
+                >
+                  <a href={`/blog/${post.id}`}>
+                    <div class="entry-heading">
+                      <h3>{post.data.title}</h3>
+                      <time datetime={post.data.publishedAt}>
+                        {post.data.publishedAt.slice(0, 10)}
+                      </time>
+                    </div>
+                    <p>{post.data.summary}</p>
+                  </a>
+                </li>
+              ))
+            }
+          </ol>
+        </PostList>
       </section>
 
       <WaveDivider class="section-wave" />
