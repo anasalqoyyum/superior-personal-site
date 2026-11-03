@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs",
     "format": "prettier --write .",
     "image:webp": "node scripts/convert-image-to-webp.mjs",
     "gif:webm": "node --experimental-strip-types scripts/convert-gif-to-webm.ts"

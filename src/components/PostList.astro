@@ -1,0 +1,53 @@
+---
+interface Props {
+  limit?: number
+}
+
+const { limit } = Astro.props
+---
+
+<post-list data-limit={limit}>
+  <slot />
+</post-list>
+
+<script>
+  import { isPostListed } from '../utils/post-visibility'
+
+  class PostList extends HTMLElement {
+    connectedCallback() {
+      const now = Date.now()
+      const limit = Number(this.dataset.limit ?? Infinity)
+      let listedCount = 0
+
+      for (const entry of this.querySelectorAll<HTMLElement>('[data-post]')) {
+        const listed = isPostListed({
+          listAfter: entry.dataset.listAfter,
+          now
+        })
+        entry.hidden = !listed || listedCount >= limit
+        if (listed) listedCount++
+      }
+
+      for (const group of this.querySelectorAll<HTMLElement>(
+        '[data-post-year]'
+      )) {
+        const count = group.querySelectorAll('[data-post]:not([hidden])').length
+        group.hidden = count === 0
+        const label = group.querySelector('[data-post-count]')
+        if (label) label.textContent = `${count} entries`
+      }
+    }
+  }
+
+  customElements.define('post-list', PostList)
+</script>
+
+<style>
+  post-list {
+    display: block;
+  }
+
+  post-list :global([hidden]) {
+    display: none !important;
+  }
+</style>
