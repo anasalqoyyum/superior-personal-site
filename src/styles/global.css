@@ -23,7 +23,6 @@
   --signal: #c98eb3;
   --border: #2b2938;
   --border-strong: #4a465f;
-  --wave: #6e698f;
   --selection-bg: #a39ed0;
   --selection-text: #050505;
   --size-body: 1rem;
@@ -201,15 +200,11 @@
   color: var(--accent-hover);
 }
 
-.terminal-heading {
+.page-heading {
   margin-bottom: clamp(3rem, 7vw, 5.5rem);
 }
 
-.terminal-heading .terminal-label {
-  margin-bottom: 1rem;
-}
-
-.terminal-heading h1 {
+.page-heading h1 {
   max-width: 55rem;
   font-size: var(--size-display);
   font-weight: 500;
@@ -218,7 +213,7 @@
   text-wrap: balance;
 }
 
-.terminal-heading h1 + p {
+.page-heading h1 + p {
   max-width: 42rem;
   margin-top: 1.25rem;
   color: var(--text-muted);
@@ -228,19 +223,13 @@
   text-wrap: pretty;
 }
 
-.terminal-label {
+.section-label {
   color: var(--accent);
   font-size: var(--size-label);
   font-weight: 500;
   letter-spacing: 0.05em;
   line-height: 1.43;
   text-transform: uppercase;
-}
-
-.terminal-label::before {
-  margin-right: 0.55rem;
-  color: var(--signal);
-  content: '>';
 }
 
 .footnotes h2 {

@@ -3,7 +3,6 @@ import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import avatar from '../assets/images/avatar.png'
 import photo from '../assets/images/photo.jpg'
-import WaveDivider from '../components/WaveDivider.astro'
 import PostList from '../components/PostList.astro'
 import { SOCIAL_LINK } from '../consts'
 import Layout from '../layouts/Layout.astro'
@@ -99,7 +98,7 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
   <div class="home-ledger">
     <section class="home-left">
       <p class="current-focus">
-        <span>&gt; current focus:&nbsp;</span>Shipping useful things;
+        <span>Current focus:</span> shipping useful things.
       </p>
 
       <div class="portrait-flip" data-portrait-flip data-side="art">
@@ -145,10 +144,8 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
         </div>
       </div>
 
-      <WaveDivider class="section-wave" />
-
       <section class="intro-section" aria-labelledby="intro-heading">
-        <h1 id="intro-heading" class="terminal-label">
+        <h1 id="intro-heading" class="section-label">
           Intro
         </h1>
         <p>
@@ -158,10 +155,8 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
         </p>
       </section>
 
-      <WaveDivider class="section-wave" />
-
       <section class="link-section" aria-labelledby="links-heading">
-        <h2 id="links-heading" class="terminal-label">
+        <h2 id="links-heading" class="section-label">
           Links
         </h2>
         <ul>
@@ -172,7 +167,6 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
                 target={project.external ? '_blank' : undefined}
                 rel={project.external ? 'noreferrer noopener' : undefined}
               >
-                <span aria-hidden="true">&gt;</span>
                 {project.title}
               </a>
             </li>
@@ -180,17 +174,14 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
         </ul>
       </section>
 
-      <WaveDivider class="section-wave" />
-
       <section class="link-section" aria-labelledby="social-heading">
-        <h2 id="social-heading" class="terminal-label">
+        <h2 id="social-heading" class="section-label">
           Social
         </h2>
         <ul>
           {socials.map(([label, href]) => (
             <li>
               <a href={href} target="_blank" rel="noreferrer noopener">
-                <span aria-hidden="true">&gt;</span>
                 {label}
               </a>
             </li>
@@ -199,7 +190,6 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
       </section>
 
       <p class="home-signoff">
-        <span aria-hidden="true">&gt;</span>
         anasalqoyyum.dev
         <span aria-hidden="true">|</span>
         Made in Jepara, Indonesia
@@ -209,7 +199,7 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
 
     <section class="home-right">
       <section aria-labelledby="recent-heading">
-        <h2 id="recent-heading" class="terminal-label">
+        <h2 id="recent-heading" class="section-label">
           Recent writing
         </h2>
         <PostList limit={4}>
@@ -235,10 +225,8 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
         </PostList>
       </section>
 
-      <WaveDivider class="section-wave" />
-
       <section aria-labelledby="projects-heading">
-        <h2 id="projects-heading" class="terminal-label">
+        <h2 id="projects-heading" class="section-label">
           Side projects
         </h2>
         <ul class="entry-list project-list">
@@ -255,8 +243,6 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
           ))}
         </ul>
       </section>
-
-      <WaveDivider class="section-wave final-wave" />
     </section>
   </div>
 </Layout>
@@ -451,8 +437,12 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
     color: var(--text-muted);
   }
 
-  .section-wave {
-    margin-block: 2.6rem;
+  .home-left > section {
+    margin-top: 3.5rem;
+  }
+
+  .home-right > section + section {
+    margin-top: 3.5rem;
   }
 
   .intro-section p {
@@ -474,13 +464,8 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
   .link-section a {
     display: inline-flex;
     align-items: center;
-    gap: 0.75rem;
     font-size: var(--size-body);
     transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
-  }
-
-  .link-section a span {
-    color: var(--accent);
   }
 
   .link-section a:hover {
@@ -497,10 +482,6 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
     font-size: var(--size-meta);
   }
 
-  .home-signoff > span:first-child {
-    color: var(--signal);
-  }
-
   .home-signoff i {
     width: 0.42rem;
     height: 0.42rem;
@@ -508,7 +489,7 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
     border-radius: 50%;
   }
 
-  .home-right .terminal-label {
+  .home-right .section-label {
     margin-bottom: 1.4rem;
   }
 
@@ -558,11 +539,6 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
 
   .project-list .entry-heading > span {
     color: var(--accent);
-  }
-
-  .final-wave {
-    margin-top: 3rem;
-    margin-bottom: 0;
   }
 
   @media (max-width: 48rem) {

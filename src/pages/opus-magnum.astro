@@ -1,5 +1,4 @@
 ---
-import WaveDivider from '../components/WaveDivider.astro'
 import Layout from '../layouts/Layout.astro'
 import { opusMagnumSolutions } from '../utils/opus-magnum'
 
@@ -12,24 +11,9 @@ const formatMetric = (value: number | null, suffix = '') =>
 ---
 
 <Layout title={`${title} — Anas Alqoyyum`} description={description}>
-  <header class="terminal-heading gallery-heading">
-    <p class="terminal-label">Gallery / Opus Magnum</p>
-    <h1>Alchemical machines, left running.</h1>
-    <p>
-      Personal solutions from Zachtronics’ hex-grid programming game. Every
-      machine is filed with its cost, cycles, and occupied area.
-    </p>
+  <header class="page-heading">
+    <h1>{title}</h1>
   </header>
-
-  <WaveDivider class="gallery-wave" />
-
-  <div class="gallery-note">
-    <span>&gt; field note</span>
-    <p>
-      These are working solutions, not claims of optimality. Open any recording
-      to inspect it at full size.
-    </p>
-  </div>
 
   <section class="solution-ledger" aria-label="Opus Magnum solutions">
     {opusMagnumSolutions.map((solution, index) => (
@@ -94,30 +78,6 @@ const formatMetric = (value: number | null, suffix = '') =>
 </Layout>
 
 <style>
-  .gallery-wave {
-    margin-top: calc(clamp(3rem, 7vw, 5.5rem) * -0.55);
-    margin-bottom: 2.5rem;
-  }
-
-  .gallery-note {
-    display: grid;
-    max-width: 54rem;
-    margin-bottom: 4rem;
-    gap: 1rem 2.5rem;
-    grid-template-columns: 8rem 1fr;
-  }
-
-  .gallery-note span {
-    color: var(--accent);
-    font-size: var(--size-meta);
-  }
-
-  .gallery-note p {
-    color: var(--text-muted);
-    font-size: var(--size-label);
-    line-height: 1.7;
-  }
-
   .solution-ledger {
     display: grid;
     border-top: 1px solid var(--border);
@@ -239,10 +199,6 @@ const formatMetric = (value: number | null, suffix = '') =>
 
   @media (max-width: 46rem) {
     .solution-ledger {
-      grid-template-columns: 1fr;
-    }
-
-    .gallery-note {
       grid-template-columns: 1fr;
     }
   }

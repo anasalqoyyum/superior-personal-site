@@ -1,23 +1,17 @@
 ---
-import WaveDivider from '../components/WaveDivider.astro'
 import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Not Found">
   <section class="not-found">
-    <p class="terminal-label">Error / 404-ish</p>
     <div class="error-code" aria-hidden="true">
       418
     </div>
     <h1>I’m a teapot.</h1>
     <p class="error-copy">
-      The requested page wasn’t found. The server remains emotionally committed
-      to the more interesting status code.
+      Actually, the page hasn’t been found, but 404 is too boring.
     </p>
-    <WaveDivider class="error-wave" />
-    <a href="/">
-      <span aria-hidden="true">&gt;</span> Return home
-    </a>
+    <a href="/">Return home</a>
   </section>
 </Layout>
 
@@ -50,20 +44,11 @@ import Layout from '../layouts/Layout.astro'
     line-height: 1.8;
   }
 
-  .error-wave {
-    margin-block: 2.5rem;
-  }
-
   a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
+    display: inline-block;
+    margin-top: 2.5rem;
     font-size: var(--size-label);
     transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
-  }
-
-  a span {
-    color: var(--accent);
   }
 
   a:hover {

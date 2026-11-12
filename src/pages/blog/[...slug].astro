@@ -3,7 +3,6 @@ import { Image } from 'astro:assets'
 import { type CollectionEntry, getCollection, render } from 'astro:content'
 import calcReadingTime from 'reading-time'
 import photo from '../../assets/images/photo.jpg'
-import WaveDivider from '../../components/WaveDivider.astro'
 import Layout from '../../layouts/Layout.astro'
 
 export async function getStaticPaths() {
@@ -54,7 +53,7 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
   >
     <header class="article-header">
       <div class="article-kicker">
-        <p class="terminal-label">
+        <p class="section-label">
           {lang} / {readingTime}
         </p>
         {isMultiLang && (
@@ -94,8 +93,6 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
       </div>
     </header>
 
-    <WaveDivider class="article-wave" />
-
     {thumbnail && (
       <figure class="article-cover">
         <img src={thumbnail} alt={thumbnailAlt} loading="eager" />
@@ -108,7 +105,6 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     </section>
 
     <footer class="article-footer">
-      <span>&gt; end of note</span>
       <div>
         <a href={githubFileUrl}>Edit on GitHub ↗</a>
       </div>
@@ -191,10 +187,8 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     object-fit: cover;
   }
 
-  .article-wave {
-    max-width: 38rem;
-    margin-block: 3rem;
-    margin-inline: auto;
+  .article-header {
+    margin-bottom: 4rem;
   }
 
   .article-cover {
@@ -229,10 +223,6 @@ const alternateLanguage = lang === 'ID' ? 'English' : 'Bahasa Indonesia'
     gap: 1.5rem;
     color: var(--text-muted);
     font-size: var(--size-label);
-  }
-
-  .article-footer > span {
-    color: var(--accent);
   }
 
   .article-footer div {

@@ -1,23 +1,15 @@
 ---
 import { Image } from 'astro:assets'
 import photo from '../assets/images/photo.jpg'
-import WaveDivider from '../components/WaveDivider.astro'
 import Layout from '../layouts/Layout.astro'
 
 const { title } = Astro.props.content
 ---
 
 <Layout title={title}>
-  <header class="terminal-heading">
-    <p class="terminal-label">About</p>
-    <h1>The person behind the screen.</h1>
-    <p>
-      Software engineer, rhythm-game enthusiast, occasional robotics instructor,
-      based in Jepara.
-    </p>
+  <header class="page-heading">
+    <h1>About</h1>
   </header>
-
-  <WaveDivider class="about-wave" />
 
   <div class="about-layout">
     <aside>
@@ -51,11 +43,6 @@ const { title } = Astro.props.content
 </Layout>
 
 <style>
-  .about-wave {
-    margin-top: calc(clamp(3rem, 7vw, 5.5rem) * -0.55);
-    margin-bottom: clamp(3rem, 7vw, 5rem);
-  }
-
   .about-layout {
     display: grid;
     align-items: start;

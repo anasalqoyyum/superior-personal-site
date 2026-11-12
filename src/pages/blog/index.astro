@@ -2,7 +2,6 @@
 import { getCollection } from 'astro:content'
 import BlogItem from '../../components/BlogItem.astro'
 import PostList from '../../components/PostList.astro'
-import WaveDivider from '../../components/WaveDivider.astro'
 import { SITE_TITLE } from '../../consts'
 import Layout from '../../layouts/Layout.astro'
 import { isPostListed } from '../../utils/post-visibility'
@@ -36,16 +35,9 @@ const listedCountsByYear = new Map(
 ---
 
 <Layout title={`Writing — ${SITE_TITLE}`}>
-  <header class="terminal-heading">
-    <p class="terminal-label">Writing</p>
-    <h1>Notes from the field.</h1>
-    <p>
-      Software, games, useful mistakes, and the occasional thought worth
-      keeping.
-    </p>
+  <header class="page-heading">
+    <h1>Writing</h1>
   </header>
-
-  <WaveDivider class="writing-wave" />
 
   <PostList>
     <div class="writing-years">
@@ -78,11 +70,6 @@ const listedCountsByYear = new Map(
 </Layout>
 
 <style>
-  .writing-wave {
-    margin-top: calc(clamp(3rem, 7vw, 5.5rem) * -0.55);
-    margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
-  }
-
   .writing-years {
     border-top: 1px solid var(--border);
   }
