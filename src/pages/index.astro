@@ -168,6 +168,7 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
                 rel={project.external ? 'noreferrer noopener' : undefined}
               >
                 {project.title}
+                {project.external && <span aria-hidden="true">↗</span>}
               </a>
             </li>
           ))}
@@ -183,6 +184,7 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
             <li>
               <a href={href} target="_blank" rel="noreferrer noopener">
                 {label}
+                <span aria-hidden="true">↗</span>
               </a>
             </li>
           ))}
@@ -462,14 +464,24 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
   }
 
   .link-section a {
-    display: inline-flex;
-    align-items: center;
     font-size: var(--size-body);
-    transition: color 240ms cubic-bezier(0.32, 0.72, 0, 1);
+    text-decoration: underline;
+    text-decoration-color: var(--border-strong);
+    text-underline-offset: 0.3rem;
+    transition:
+      color 240ms cubic-bezier(0.32, 0.72, 0, 1),
+      text-decoration-color 240ms cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  .link-section a span {
+    display: inline-block;
+    margin-left: 0.4rem;
+    color: var(--accent);
   }
 
   .link-section a:hover {
     color: var(--accent-hover);
+    text-decoration-color: var(--accent-hover);
   }
 
   .home-signoff {
