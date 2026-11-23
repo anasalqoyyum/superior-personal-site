@@ -215,9 +215,14 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
                 <a href={`/blog/${post.id}`}>
                   <div class="entry-heading">
                     <h3>{post.data.title}</h3>
-                    <time datetime={post.data.publishedAt}>
-                      {post.data.publishedAt.slice(0, 10)}
-                    </time>
+                    <div class="entry-meta">
+                      <time datetime={post.data.publishedAt}>
+                        {post.data.publishedAt.slice(0, 10)}
+                      </time>
+                      {post.id === pinnedPostId && (
+                        <span class="entry-pin">Pinned</span>
+                      )}
+                    </div>
                   </div>
                   <p>{post.data.summary}</p>
                 </a>
@@ -534,6 +539,17 @@ const socials = [SOCIAL_LINK[1], SOCIAL_LINK[2], SOCIAL_LINK[0]]
     color: var(--text-muted);
     font-size: var(--size-meta);
     white-space: nowrap;
+  }
+
+  .entry-meta {
+    display: grid;
+    justify-items: end;
+    gap: 0.25rem;
+  }
+
+  .entry-pin {
+    color: var(--accent);
+    font-size: var(--size-meta);
   }
 
   .entry-list p {
